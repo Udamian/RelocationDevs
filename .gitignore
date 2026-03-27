@@ -1,0 +1,15 @@
+﻿__pycache__/
+*.py[cod]
+*.pkl
+*.parquet
+.env
+.venv/
+venv/
+.DS_Store
+data/raw/*
+data/processed/*
+data/interim/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/interim/.gitkeep
+models/*.pkl
