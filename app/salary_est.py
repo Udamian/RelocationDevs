@@ -1,7 +1,7 @@
 ﻿"""
 salary_est.py
-Módulo: estimador salarial interactivo.
-Carga países y roles reales desde salaries.csv.
+Usa el perfil guardado en session_state.
+Permite ajustar la tasa impositiva manualmente.
 """
 
 import streamlit as st
@@ -13,79 +13,63 @@ from src.indicators import estimated_net_salary, estimated_purchasing_power
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 
 
-@st.cache_data
-def load_options():
-    """Carga países, roles y especializaciones reales del dataset."""
-    df = pd.read_csv(PROCESSED / "salaries.csv")
-    countries     = sorted(df["city_name"].dropna().unique().tolist())
-    roles         = sorted(df["role"].dropna().unique().tolist())
-    specs         = sorted(df["specialization"].dropna().unique().tolist())
-    return countries, roles, specs
-
-
 def render():
     st.title("Salary Estimator")
-    st.caption("Estima tu salario esperado según tu perfil profesional")
+    st.caption("Estimación salarial basada en tu perfil")
 
-    # Cargar opciones reales
-    try:
-        countries, roles, specs = load_options()
-    except FileNotFoundError:
-        st.error("No se encontró salaries.csv. Ejecuta primero el notebook 03_modeling.ipynb.")
+    p = st.session_state.get("profile", {})
+
+    if not p:
+        st.warning("No hay perfil definido. Vuelve a la pantalla de inicio.")
         return
 
-    # Formulario
+    # Mostrar perfil activo
+    st.info(
+        f"**{p['role']}** · {p['specialization']} · "
+        f"{p['years_experience']} años · {p['education_level']} · "
+        f"desde {p['origin_country']}"
+    )
+
+    # Solo pedimos la tasa impositiva — lo único que varía por destino
+    st.divider()
+    st.subheader("Ajuste por país de destino")
+
     col1, col2 = st.columns(2)
-
     with col1:
-        country    = st.selectbox("País de destino", countries)
-        role       = st.selectbox("Rol", roles)
-        spec       = st.selectbox("Especialización", specs)
-
+        tax_rate = st.slider("Tasa impositiva del país de destino (%)", 0, 60, 30)
     with col2:
-        years_exp  = st.slider("Años de experiencia", 0, 30, 3)
-        education  = st.selectbox("Nivel educativo", ["Bachelor", "Master", "PhD", "Bootcamp"])
-        tax_rate   = st.slider("Tasa impositiva estimada (%)", 0, 60, 30)
+        st.caption("Ajusta la tasa según el país de destino que estás evaluando.")
+        st.caption("Puedes encontrar las tasas en la documentación del proyecto (OECD).")
 
     st.divider()
 
-    if st.button("Estimar salario", type="primary", use_container_width=True):
+    if st.button("Calcular", type="primary", use_container_width=True):
         try:
-            profile = {
-                "city_name":        country,
-                "role":             role,
-                "specialization":   spec,
-                "years_experience": years_exp,
-                "education_level":  education,
-            }
+            gross    = p.get("estimated_salary") or predict({
+                "city_name":        p["origin_country"],
+                "role":             p["role"],
+                "specialization":   p["specialization"],
+                "years_experience": p["years_experience"],
+                "education_level":  p["education_level"],
+            })
+            net      = estimated_net_salary(gross, tax_rate)
+            pwr      = estimated_purchasing_power(net, 100)
+            savings  = net * 0.30
 
-            gross = predict(profile)
-            net   = estimated_net_salary(gross, tax_rate)
-            pwr   = estimated_purchasing_power(net, 100)
-            savings = net * 0.30  # ahorro estimado 30%
-
-            # Métricas principales
             c1, c2, c3, c4 = st.columns(4)
             c1.metric("Salario bruto", f"€{gross:,.0f}")
             c2.metric("Salario neto", f"€{net:,.0f}")
             c3.metric("Poder adquisitivo", f"{pwr:.1f}")
             c4.metric("Ahorro anual est.", f"€{savings:,.0f}")
 
-            # Desglose
-            st.subheader("Desglose")
-            st.write(f"**País:** {country} · **Rol:** {role} · **Especialización:** {spec}")
-            st.write(f"**Experiencia:** {years_exp} años · **Educación:** {education}")
-            st.write(f"**Impuestos aplicados:** {tax_rate}% → €{gross - net:,.0f} retenidos")
+            st.divider()
+            st.write(f"**Impuestos retenidos:** {tax_rate}% → €{gross - net:,.0f}/año")
 
-            # Aviso de precisión
+            n = len(pd.read_csv(PROCESSED / "salaries.csv"))
             st.info(
-                f"Estimación basada en {len(pd.read_csv(PROCESSED / 'salaries.csv')):,} "
-                f"respuestas del Stack Overflow Developer Survey 2023. "
-                f"Margen de error estimado: ±€29.000 — los salarios varían significativamente "
-                f"según empresa, ciudad exacta y habilidades específicas."
+                f"Estimación basada en {n:,} respuestas del Stack Overflow Developer Survey 2023. "
+                f"Margen de error estimado: ±€29.000."
             )
 
-        except FileNotFoundError:
-            st.error("Modelo no entrenado. Ejecuta primero el notebook 03_modeling.ipynb.")
         except Exception as e:
-            st.error(f"Error al predecir: {e}")
+            st.error(f"Error al calcular: {e}")

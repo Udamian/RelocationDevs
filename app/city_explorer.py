@@ -20,6 +20,12 @@ def render():
     st.title("City Explorer")
     st.caption("Explora y filtra ciudades por indicadores clave")
 
+    p = st.session_state.get("profile", {})
+    if p.get("estimated_salary"):
+        st.info(
+            f"Tu salario estimado: **€{p['estimated_salary']:,.0f}/año** · "
+            f"Las ciudades destacadas son aquellas donde tu salario cubre bien el coste de vida."
+        )
     try:
         df = load_data()
     except FileNotFoundError:
