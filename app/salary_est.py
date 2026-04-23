@@ -9,13 +9,13 @@ import pandas as pd
 from pathlib import Path
 from src.model import predict
 from src.indicators import estimated_net_salary, estimated_purchasing_power
+from app.styles import page_header
 
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 
 
 def render():
-    st.title("Salary Estimator")
-    st.caption("Estimación salarial basada en tu perfil")
+  page_header("Salary Estimator", "Estimación salarial basada en tu perfil")
 
     p = st.session_state.get("profile", {})
 

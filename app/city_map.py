@@ -11,7 +11,7 @@ import folium
 from folium.plugins import MarkerCluster
 from streamlit_folium import st_folium
 from pathlib import Path
-
+from app.styles import page_header
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 
 COUNTRY_COORDS = {
@@ -173,8 +173,7 @@ def build_popup(row, bounds):
 
 
 def render():
-    st.title("Mapa de ciudades")
-    st.caption("Verde = mejor Relocation Score · Los puntos se agrupan al alejar el zoom · Haz click para ver detalles")
+    page_header("Mapa de ciudades", "Verde = mejor score · Click para ver detalles")
 
     cities_file = PROCESSED / "cities_processed.csv"
     if not cities_file.exists():

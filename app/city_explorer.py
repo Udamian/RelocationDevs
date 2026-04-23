@@ -7,7 +7,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
-
+from app.styles import page_header
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 
 
@@ -17,8 +17,7 @@ def load_data():
 
 
 def render():
-    st.title("City Explorer")
-    st.caption("Explora y filtra ciudades por indicadores clave")
+    page_header("City Explorer", "Explora y filtra ciudades por indicadores clave")
 
     p = st.session_state.get("profile", {})
     if p.get("estimated_salary"):

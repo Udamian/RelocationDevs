@@ -1,4 +1,4 @@
-﻿"""
+"""
 main.py — Punto de entrada Streamlit.
 Pantalla de bienvenida con perfil de usuario.
 El perfil persiste toda la sesión y contextualiza todas las vistas.
@@ -15,8 +15,15 @@ st.set_page_config(
     page_icon="🌍",
     layout="wide",
     initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
 )
 
+from app.styles import inject_styles
+inject_styles()
 
 @st.cache_data
 def load_salary_options():
@@ -93,8 +100,8 @@ def render_sidebar_profile():
     """Sidebar con resumen del perfil activo y botón para resetearlo."""
     p = st.session_state.profile
 
-    st.sidebar.title("🌍 RelocationDevs")
-    st.sidebar.divider()
+    from app.styles import render_sidebar_brand
+    render_sidebar_brand()
 
     st.sidebar.subheader("Tu perfil")
     st.sidebar.write(f"**Rol:** {p['role']}")
@@ -120,7 +127,7 @@ def render_sidebar_profile():
     st.sidebar.divider()
     return st.sidebar.radio(
         "Navegación",
-        ["City Explorer", "City Comparison", "Mapa de ciudades", "Salary Estimator"],
+        ["City Explorer", "City Comparison", "Mapa de ciudades", "Buscador de ciudad ideal", "Salary Estimator"],
     )
 
 
@@ -138,3 +145,9 @@ else:
         from app.city_map import render; render()
     elif page == "Salary Estimator":
         from app.salary_est import render; render()
+    elif page == "Buscador de ciudad ideal":
+        from app.city_finder import render
+        render()
+
+from app.styles import render_footer
+render_footer()

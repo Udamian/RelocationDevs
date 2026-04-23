@@ -1,4 +1,4 @@
-﻿"""
+"""
 comparison.py
 Módulo: comparación de ciudades lado a lado con barras y radar chart.
 """
@@ -7,7 +7,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 from pathlib import Path
-
+from app.styles import page_header
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 
 METRICS = {
@@ -25,8 +25,7 @@ COLORS = ["#4A90D9", "#E8593C", "#2ECC71", "#F39C12", "#9B59B6"]
 
 
 def render():
-    st.title("City Comparison")
-    st.caption("Compara ciudades en múltiples dimensiones")
+    page_header("City Comparison", "Compara ciudades en múltiples dimensiones")
 
     cities_file = PROCESSED / "cities_processed.csv"
     if not cities_file.exists():
@@ -138,6 +137,6 @@ def render():
     st.subheader("Tabla comparativa")
     cols_show = ["city_name", "country"] + [c for c in METRICS.keys() if c in subset.columns]
     st.dataframe(
-        subset[cols_show].set_index("city_name").T,
+        subset[cols_show].set_index("city_name").astype(str).T,
         use_container_width=True,
     )
