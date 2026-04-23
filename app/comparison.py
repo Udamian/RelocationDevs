@@ -35,9 +35,17 @@ def render():
     df = pd.read_csv(cities_file)
     city_names = sorted(df["city_name"].unique())
 
+    if "comparison_selected" not in st.session_state:
+        st.session_state.comparison_selected = []
+        
+    if "comparison_preselect" in st.session_state and st.session_state.comparison_preselect:
+        st.session_state.comparison_selected = [c for c in st.session_state.comparison_preselect if c in city_names]
+        st.session_state.comparison_preselect = []
+
     selected = st.multiselect(
         "Selecciona ciudades para comparar",
         city_names,
+        key="comparison_selected",
         max_selections=5,
         placeholder="Elige entre 2 y 5 ciudades..."
     )
