@@ -206,7 +206,7 @@ def render_sidebar_profile():
     )
 
     if "nav_page" not in st.session_state:
-        st.session_state.nav_page = "✨ Buscador de ciudad ideal"
+        st.session_state.nav_page = "Buscador de ciudad ideal"
 
     if "redirect_to" in st.session_state and st.session_state.redirect_to:
         st.session_state.nav_page = st.session_state.redirect_to
@@ -214,7 +214,7 @@ def render_sidebar_profile():
 
     page = st.sidebar.radio(
         "Navegación",
-        ["✨ Buscador de ciudad ideal", "City Explorer", "City Comparison", "Mapa de ciudades"],
+        ["Buscador de ciudad ideal", "Explorador", "Comparador", "Mapa", "Informe PDF"],
         label_visibility="collapsed",
         key="nav_page",
     )
@@ -248,11 +248,14 @@ else:
     page = render_sidebar_profile()
     render_footer()
 
-    if page == "City Explorer":
+    if page == "Explorador":
         from app.city_explorer import render; render()
-    elif page == "City Comparison":
+    elif page == "Comparador":
         from app.comparison import render; render()
-    elif page == "Mapa de ciudades":
+    elif page == "Mapa":
         from app.city_map import render; render()
-    elif page == "✨ Buscador de ciudad ideal":
+    elif page == "Buscador de ciudad ideal":
         from app.city_finder import render; render()
+    elif page == "Informe PDF":
+        from app.pdf_generator import render
+        render()
