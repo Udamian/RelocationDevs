@@ -13,6 +13,8 @@ import base64
 from pathlib import Path
 from datetime import datetime
 from app.styles import page_header
+import requests
+
 
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 ASSETS    = Path(__file__).parent.parent / "assets"
@@ -222,22 +224,96 @@ def build_radar_b64(cities: list[dict]) -> str:
                 tickfont=dict(color="#aeaeb2", size=9),
             ),
         ),
-        paper_bgcolor="#111111",
+        paper_bgcolor="rgba(0,0,0,0)",
         showlegend=True,
         legend=dict(
-            font=dict(color="#aeaeb2", size=9),
+            font=dict(color="#aeaeb2", size=8),
             bgcolor="rgba(0,0,0,0)",
             orientation="h",
-            y=-0.2, x=0.5, xanchor="center",
+            y=-0.25, x=0.5, xanchor="center",
         ),
-        height=240, width=280,
-        margin=dict(t=10, b=40, l=30, r=30),
+        height=310, width=310,
+        margin=dict(t=25, b=65, l=45, r=45),
     )
 
     img_bytes = pio.to_image(fig, format="png", scale=2)
     return "data:image/png;base64," + base64.b64encode(img_bytes).decode()
 
+def _is_valid_photo(url: str) -> bool:
+    """Filtra URLs que probablemente sean escudos, mapas o banderas."""
+    blacklist = [
+        "coat", "arms", "flag", "map", "logo", "seal", "emblem",
+        "coa_", "heraldry", ".svg", "locator", "blank", "relief",
+        "ortho", "globe", "location", "shield", "banner", "ribbon"
+    ]
+    return not any(word in url.lower() for word in blacklist)
 
+
+def get_city_image_b64(city_name: str, country: str = "",
+                       lat: float = None, lon: float = None) -> str:
+    """
+    Obtiene imagen de ciudad desde Wikipedia o Wikimedia Commons.
+    Estrategia 1: Wikipedia REST API (thumbnail de la página de la ciudad)
+    Estrategia 2: Wikimedia Commons geosearch por coordenadas (fallback)
+    Devuelve base64 para incrustar en HTML o "" si no encuentra nada.
+    """
+    headers = {"User-Agent": "RelocationDevs/1.0 (portfolio project)"}
+
+    # ── Estrategia 1: Wikipedia REST API ──────────────────────
+    queries = [
+        f"{city_name},_{country}".replace(" ", "_"),
+        city_name.replace(" ", "_"),
+        f"{city_name}_city".replace(" ", "_"),
+    ]
+
+    for query in queries:
+        try:
+            url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{query}"
+            r   = requests.get(url, timeout=6, headers=headers)
+            if r.status_code == 200:
+                data      = r.json()
+                image_url = (
+                    data.get("originalimage", {}).get("source") or
+                    data.get("thumbnail", {}).get("source", "")
+                )
+                if image_url and _is_valid_photo(image_url):
+                    img_r = requests.get(image_url, timeout=8, headers=headers)
+                    if img_r.status_code == 200:
+                        ext = "jpeg" if any(
+                            x in image_url.lower() for x in ["jpg", "jpeg"]
+                        ) else "png"
+                        b64 = base64.b64encode(img_r.content).decode()
+                        return f"data:image/{ext};base64,{b64}"
+        except Exception:
+            continue
+
+    # ── Estrategia 2: Wikimedia Commons geosearch ──────────────
+    if lat and lon:
+        try:
+            geo_url = (
+                f"https://commons.wikimedia.org/w/api.php"
+                f"?action=query&generator=geosearch"
+                f"&ggsprimary=all&ggsnamespace=6"
+                f"&ggsradius=8000&ggscoord={lat}|{lon}"
+                f"&prop=imageinfo&iiprop=url|mime"
+                f"&iiurlwidth=800&format=json&ggsglobe=earth"
+            )
+            r = requests.get(geo_url, timeout=6, headers=headers)
+            if r.status_code == 200:
+                pages = r.json().get("query", {}).get("pages", {})
+                for page in pages.values():
+                    info = page.get("imageinfo", [{}])[0]
+                    mime = info.get("mime", "")
+                    thumb_url = info.get("thumburl", "")
+                    if "image/jpeg" in mime and thumb_url and _is_valid_photo(thumb_url):
+                        img_r = requests.get(thumb_url, timeout=8, headers=headers)
+                        if img_r.status_code == 200:
+                            b64 = base64.b64encode(img_r.content).decode()
+                            return f"data:image/jpeg;base64,{b64}"
+        except Exception:
+            pass
+
+    return ""
 # ── HTML de card por ciudad ───────────────────────────────────
 def city_card_html(
     city: dict,
@@ -245,6 +321,7 @@ def city_card_html(
     estimated_salary: float,
     donut_b64: str,
     insights: list[tuple[str, str]],
+    image_b64: str = "",
 ) -> str:
     tax     = city.get("tax_rate", 30)
     net     = estimated_salary * (1 - tax / 100)
@@ -255,111 +332,172 @@ def city_card_html(
     rank_colors = {1: "#f5f5f7", 2: "#aeaeb2", 3: "#8e8e93"}
     rc = rank_colors.get(rank, "#6e6e73")
 
+    # ── Imagen de fondo con overlay oscuro ────────────────────
+    if image_b64:
+        city_header = f"""
+        <div style="
+            width: 100%;
+            height: 90px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        ">
+            <img src="{image_b64}" style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                filter: brightness(0.55);
+                display: block;
+            " />
+            <div style="
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(17,17,17,0.1) 0%,
+                    rgba(17,17,17,0.7) 100%
+                );
+            "></div>
+            <div style="
+                position: absolute;
+                bottom: 10px;
+                left: 12px;
+                right: 12px;
+            ">
+                <div style="display:flex;align-items:baseline;gap:6px;">
+                    <span style="font-size:11px;font-weight:700;color:{rc};">#{rank}</span>
+                    <span style="font-size:15px;font-weight:800;color:#f5f5f7;
+                    letter-spacing:-0.01em;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,0.8);">
+                        {city.get('city_name','').upper()}
+                    </span>
+                </div>
+                <div style="font-size:9px;color:#aeaeb2;margin-top:2px;
+                text-shadow:0 1px 3px rgba(0,0,0,0.9);">
+                    {city.get('country','')} — {city.get('region','')}
+                </div>
+            </div>
+        </div>
+        """
+    else:
+        # Placeholder elegante si no hay imagen
+        city_header = f"""
+        <div style="
+            width: 100%;
+            height: 90px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 100%);
+            margin-bottom: 10px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10px 12px;
+            position: relative;
+        ">
+            <div style="display:flex;align-items:baseline;gap:6px;">
+                <span style="font-size:11px;font-weight:700;color:{rc};">#{rank}</span>
+                <span style="font-size:15px;font-weight:800;color:#f5f5f7;
+                letter-spacing:-0.01em;line-height:1;">
+                    {city.get('city_name','').upper()}
+                </span>
+            </div>
+            <div style="font-size:9px;color:#6e6e73;margin-top:2px;">
+                {city.get('country','')} — {city.get('region','')}
+            </div>
+        </div>
+        """
+
+    # ── Métricas en grid ──────────────────────────────────────
+    metrics_html = f"""
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;flex-shrink:0;">
+        {_metric_mini("SAL. NETO EST.", f"€{net:,.0f}/año")}
+        {_metric_mini("ALQUILER", f"€{rent:,.0f}/mes")}
+        {_metric_mini("AHORRO ANUAL", f"€{savings:,.0f}")}
+        {_metric_mini("IMPUESTOS", f"{tax:.0f}%")}
+    </div>
+    """
+
+    # ── Relocation Score badge ────────────────────────────────
+    score_badge = f"""
+    <div style="background:#2c2c2e;border-radius:6px;padding:6px 10px;
+    display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+        <span style="font-size:8px;color:#6e6e73;text-transform:uppercase;
+        letter-spacing:0.08em;">Relocation Score</span>
+        <span style="font-size:18px;font-weight:800;color:#f5f5f7;
+        letter-spacing:-0.02em;">{score:.1f}</span>
+    </div>
+    """
+
+    # ── Donut + leyenda ───────────────────────────────────────
+    budget_items = [
+        ("Vivienda",     city.get("_v", 0), "#f5f5f7"),
+        ("Alimentación", city.get("_a", 0), "#aeaeb2"),
+        ("Transporte",   city.get("_t", 0), "#8e8e93"),
+        ("Ocio",         city.get("_o", 0), "#636366"),
+        ("Ahorro",       city.get("_s", 0), "#3a3a3c"),
+    ]
+    budget_legend = "".join(
+        f'<div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;">'
+        f'<div style="width:6px;height:6px;border-radius:50%;'
+        f'background:{color};flex-shrink:0;"></div>'
+        f'<span style="font-size:8px;color:#6e6e73;">{label} {pct:.0f}%</span>'
+        f'</div>'
+        for label, pct, color in budget_items
+    )
+
+    donut_section = f"""
+    <div style="flex-shrink:0;">
+        <div style="font-size:8px;color:#6e6e73;text-transform:uppercase;
+        letter-spacing:0.08em;margin-bottom:6px;">Distribución del sueldo neto</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+            <img src="{donut_b64}" width="72" height="72" style="flex-shrink:0;" />
+            <div>{budget_legend}</div>
+        </div>
+    </div>
+    """
+
+    # ── Consideraciones clave ─────────────────────────────────
     insights_html = "".join(
-        f'<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">'
-        f'<span style="font-size:14px;flex-shrink:0;">{emoji}</span>'
-        f'<span style="font-size:9px;color:#aeaeb2;line-height:1.3;">{text}</span>'
+        f'<div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;">'
+        f'<span style="font-size:12px;flex-shrink:0;">{emoji}</span>'
+        f'<span style="font-size:8px;color:#aeaeb2;line-height:1.4;">{text}</span>'
         f'</div>'
         for emoji, text in insights
     )
 
-    budget_legend = "".join(
-        f'<div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;">'
-        f'<div style="width:6px;height:6px;border-radius:50%;background:'
-        f'{["#f5f5f7","#aeaeb2","#8e8e93","#636366","#3a3a3c"][i]};flex-shrink:0;"></div>'
-        f'<span style="font-size:8px;color:#6e6e73;">{k} {v:.0f}%</span>'
-        f'</div>'
-        for i, (k, v) in enumerate(
-            sorted(
-                {k: v for k, v in
-                 [("Vivienda", city.get("_v",0)),
-                  ("Aliment.", city.get("_a",0)),
-                  ("Transp.", city.get("_t",0)),
-                  ("Ocio", city.get("_o",0)),
-                  ("Ahorro", city.get("_s",0))]}.items(),
-                key=lambda x: -x[1]
-            )
-        )
-    )
+    insights_section = f"""
+    <div style="flex-shrink:0;">
+        <div style="font-size:8px;color:#6e6e73;text-transform:uppercase;
+        letter-spacing:0.08em;margin-bottom:6px;">Consideraciones clave</div>
+        {insights_html}
+    </div>
+    """
 
     return f"""
     <div style="
         background: #1c1c1e;
         border: 1px solid #2c2c2e;
         border-radius: 10px;
-        padding: 16px;
+        padding: 12px;
         flex: 1;
         min-width: 0;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
+        overflow: hidden;
     ">
-        <!-- Ciudad header -->
-        <div>
-            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:3px;">
-                <span style="font-size:11px;font-weight:700;color:{rc};">#{rank}</span>
-                <span style="font-size:16px;font-weight:800;color:#f5f5f7;
-                letter-spacing:-0.02em;line-height:1;">
-                    {city.get('city_name','').upper()}
-                </span>
-            </div>
-            <div style="font-size:9px;color:#6e6e73;">
-                {city.get('country','')} — {city.get('region','')}
-            </div>
-        </div>
-
-        <!-- Métricas clave -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            {_metric_mini("SAL. NETO EST.", f"€{net:,.0f}/año")}
-            {_metric_mini("ALQUILER", f"€{rent:,.0f}/mes")}
-            {_metric_mini("AHORRO ANUAL", f"€{savings:,.0f}")}
-            {_metric_mini("IMPUESTOS", f"{tax:.0f}%")}
-        </div>
-
-        <!-- Relocation Score badge -->
-        <div style="
-            background: #2c2c2e;
-            border-radius: 6px;
-            padding: 7px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        ">
-            <span style="font-size:8px;color:#6e6e73;text-transform:uppercase;
-            letter-spacing:0.08em;">Relocation Score</span>
-            <span style="font-size:18px;font-weight:800;color:#f5f5f7;
-            letter-spacing:-0.02em;">{score:.1f}</span>
-        </div>
-
-        <!-- Separador -->
-        <div style="height:1px;background:#2c2c2e;"></div>
-
-        <!-- Distribución del sueldo -->
-        <div>
-            <div style="font-size:8px;color:#6e6e73;text-transform:uppercase;
-            letter-spacing:0.08em;margin-bottom:8px;">Distribución del sueldo neto</div>
-            <div style="display:flex;align-items:center;gap:10px;">
-                <img src="{donut_b64}" width="80" height="80"
-                     style="flex-shrink:0;" />
-                <div style="flex:1;">
-                    {budget_legend}
-                </div>
-            </div>
-        </div>
-
-        <!-- Separador -->
-        <div style="height:1px;background:#2c2c2e;"></div>
-
-        <!-- Consideraciones clave -->
-        <div>
-            <div style="font-size:8px;color:#6e6e73;text-transform:uppercase;
-            letter-spacing:0.08em;margin-bottom:8px;">Consideraciones clave</div>
-            {insights_html}
-        </div>
-
+        {city_header}
+        {metrics_html}
+        {score_badge}
+        <div style="height:1px;background:#2c2c2e;flex-shrink:0;"></div>
+        {donut_section}
+        <div style="height:1px;background:#2c2c2e;flex-shrink:0;"></div>
+        {insights_section}
     </div>
     """
-
 
 def _metric_mini(label: str, value: str) -> str:
     return f"""
@@ -380,6 +518,7 @@ def build_poster_html(
     insights_list: list[list],
     radar_b64: str,
     budgets: list[dict],
+    city_images: list[str], 
 ) -> str:
     logo_b64  = get_logo_b64()
     fecha     = datetime.now().strftime("%d %b %Y")
@@ -395,7 +534,7 @@ def build_poster_html(
     )
 
     radar_img = (
-        f'<img src="{radar_b64}" width="260" height="220" style="display:block;" />'
+        f'<img src="{radar_b64}" style="width:100%; height:auto; display:block; object-fit:contain;" />'
         if radar_b64 else ""
     )
 
@@ -410,9 +549,9 @@ def build_poster_html(
         enriched_cities.append(c)
 
     cards_html = "".join(
-        city_card_html(city, i + 1, estimated, donut, insights)
-        for i, (city, donut, insights) in enumerate(
-            zip(enriched_cities, donuts, insights_list)
+        city_card_html(city, i + 1, estimated, donut, insights, image)
+        for i, (city, donut, insights, image) in enumerate(
+            zip(enriched_cities, donuts, insights_list, city_images)
         )
     )
 
@@ -728,7 +867,7 @@ def render():
 
     df      = pd.read_csv(df_path)
     profile = st.session_state.get("profile", {})
-    estimated = profile.get("estimated_salary", 0) or 0
+    estimated = float(profile.get("estimated_salary", 0) or 0)
 
     # ── Selección de ciudades ──────────────────────────────────
     st.markdown("""
@@ -821,20 +960,32 @@ def render():
 
     with col_btn:
         if st.button("Generar poster PDF →", type="primary", use_container_width=True):
-            with st.spinner("Generando imágenes y componiendo el poster..."):
+            with st.spinner("Obteniendo fotos de ciudades y componiendo el poster..."):
                 try:
                     budgets       = [compute_budget_distribution(c, estimated) for c in cities_data]
                     insights_list = [get_key_insights(c, b) for c, b in zip(cities_data, budgets)]
                     donuts        = [build_donut_b64(b, size=160) for b in budgets]
                     radar_b64     = build_radar_b64(cities_data)
 
+            # Obtener fotos desde Wikipedia + Wikimedia Commons
+                    city_images = []
+                    for c in cities_data:
+                        img = get_city_image_b64(
+                            city_name=c.get("city_name", ""),
+                            country=c.get("country", ""),
+                            lat=c.get("lat"),
+                            lon=c.get("lon"),
+                        )
+                        city_images.append(img)
+
                     poster_html = build_poster_html(
                         cities_data, profile, donuts,
-                        insights_list, radar_b64, budgets
+                        insights_list, radar_b64, budgets,
+                        city_images,
                     )
 
                     st.download_button(
-                        label="⬇ Descargar HTML → Ctrl+P en navegador → Guardar PDF (horizontal, sin márgenes)",
+                        label="⬇ Descargar HTML → Ctrl+P en navegador → PDF horizontal sin márgenes",
                         data=poster_html.encode("utf-8"),
                         file_name=f"RelocationDevs_{datetime.now().strftime('%Y%m%d')}.html",
                         mime="text/html",
@@ -842,12 +993,6 @@ def render():
                     )
 
                     st.markdown("<div style='height:16px;'></div>", unsafe_allow_html=True)
-                    st.markdown("""
-                    <p style="font-size:11px;font-weight:600;color:#6e6e73;
-                    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">
-                        Preview
-                    </p>
-                    """, unsafe_allow_html=True)
                     st.components.v1.html(poster_html, height=520, scrolling=False)
 
                 except Exception as e:
