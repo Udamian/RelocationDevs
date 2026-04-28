@@ -1,0 +1,579 @@
+city_name,country,region,average_salary,average_rent,tax_rate,cost_of_living_index,purchasing_power_index,quality_of_life_index,job_market_score
+Hamilton,Bermuda,Other,52107,3094,45.0,149.02,79.43,69.7,45.4
+Zurich,Switzerland,Europe,131185,2230,41.5,131.24,129.79,101.3,74.8
+Basel,Switzerland,Europe,131185,1590,41.5,130.93,111.53,90.3,64.1
+Zug,Switzerland,Europe,131185,2322,41.5,128.13,143.4,109.4,82.7
+Lugano,Switzerland,Europe,131185,1449,41.5,123.99,111.96,90.6,64.4
+Lausanne,Switzerland,Europe,131185,1918,41.5,122.03,127.01,99.6,73.2
+Beirut,Lebanon,Other,44620,894,45.0,120.47,15.4,31.2,8.0
+Bern,Switzerland,Europe,131185,1485,41.5,118.16,112.46,90.9,64.7
+Geneva,Switzerland,Europe,131185,2417,41.5,114.05,120.6,95.8,69.4
+Stavanger,Norway,Europe,81829,1139,39.4,104.61,85.9,75.8,49.2
+"Honolulu, HI",United States,Americas,52107,2095,43.6,103.65,89.24,76.1,51.1
+Oslo,Norway,Europe,81829,1494,39.4,102.33,85.18,75.3,48.8
+Bergen,Norway,Europe,81829,1122,39.4,100.38,86.96,76.4,49.8
+"New York, NY",United States,Americas,52107,3220,43.6,100.0,100.0,82.6,57.4
+Trondheim,Norway,Europe,81829,1215,39.4,99.43,88.0,77.0,50.4
+Tromso,Norway,Europe,81829,1198,39.4,98.99,89.46,77.9,51.3
+Reykjavik,Iceland,Other,108978,1490,45.0,97.61,74.84,66.9,42.7
+Saint Helier,Jersey,Other,52107,2100,45.0,96.54,80.43,70.3,46.0
+"Santa Barbara, CA",United States,Americas,52107,2525,43.6,95.01,93.86,78.9,53.8
+Tel Aviv-Yafo,Israel,Middle East,129893,1714,50.0,94.49,70.22,62.1,40.0
+"Berkeley, CA",United States,Americas,52107,2841,43.6,94.36,85.78,74.0,49.1
+"San Francisco, CA",United States,Americas,52107,3491,43.6,93.91,133.16,102.5,76.8
+"Oakland, CA",United States,Americas,52107,2827,43.6,92.93,111.73,89.6,64.3
+"Anchorage, AK",United States,Americas,52107,1265,43.6,91.23,118.63,93.7,68.3
+"Santa Clara, CA",United States,Americas,52107,2911,43.6,89.41,155.41,115.8,89.7
+Petah Tikva,Israel,Middle East,129893,1052,50.0,88.86,72.86,63.7,41.6
+Beersheba,Israel,Middle East,129893,744,50.0,88.77,80.11,68.1,45.8
+"Seattle, WA",United States,Americas,52107,2120,43.6,88.52,145.39,109.8,83.9
+Copenhagen,Denmark,Europe,92715,1591,55.9,88.34,90.67,72.0,52.0
+Arhus,Denmark,Europe,92715,1176,55.9,88.18,95.49,74.9,54.8
+Haifa,Israel,Middle East,129893,784,50.0,87.44,77.61,66.6,44.3
+Jerusalem,Israel,Middle East,129893,1300,50.0,86.32,79.55,67.7,45.5
+Nassau,Bahamas,Other,52107,1171,45.0,85.98,46.7,50.0,26.3
+London,United Kingdom,Europe,52107,2464,45.0,85.62,88.79,75.3,50.9
+Tokyo,Japan,Asia,57206,1375,55.9,85.61,88.58,70.8,50.7
+"Boston, MA",United States,Americas,52107,2520,43.6,85.47,115.72,92.0,66.6
+Nice,France,Europe,58703,1162,55.4,84.6,64.22,56.4,36.5
+Paris,France,Europe,58703,1571,55.4,84.35,80.2,66.0,45.9
+"Queens, NY",United States,Americas,52107,2233,43.6,84.02,105.72,86.0,60.7
+Singapore,Singapore,Asia,93422,2139,45.0,83.98,91.34,76.8,52.4
+"Washington, DC",United States,Americas,52107,2366,43.6,83.74,121.83,95.7,70.2
+Sydney,Australia,Oceania,89713,1869,47.0,83.21,104.52,83.9,60.0
+Luxembourg,Luxembourg,Europe,93392,2042,45.8,82.99,100.19,81.8,57.5
+Espoo,Finland,Europe,69377,1158,51.3,82.46,90.3,73.7,51.8
+Aalborg,Denmark,Europe,92715,749,55.9,82.43,100.93,78.2,58.0
+"Pittsburgh, PA",United States,Americas,52107,1260,43.6,82.36,115.5,91.9,66.5
+Darwin,Australia,Oceania,89713,1128,47.0,82.06,109.44,86.9,62.9
+Amsterdam,Netherlands,Europe,74713,1797,49.5,80.82,94.45,76.9,54.2
+"Jersey City, NJ",United States,Americas,52107,2029,43.6,80.79,155.89,116.1,90.0
+Hong Kong,Hong Kong,Asia,52107,2401,45.0,80.71,65.74,61.4,37.4
+Breda,Netherlands,Europe,74713,1041,49.5,80.64,84.3,70.8,48.2
+"Nanaimo, BC",Canada,Americas,83902,1097,53.5,80.26,57.49,53.1,32.6
+Auckland,New Zealand,Oceania,74813,1465,39.0,80.19,79.21,71.9,45.3
+Haarlem,Netherlands,Europe,74713,1700,49.5,79.79,77.06,66.4,44.0
+Utrecht,Netherlands,Europe,74713,1436,49.5,79.76,77.9,66.9,44.5
+Brighton,United Kingdom,Europe,52107,1656,45.0,79.57,74.78,66.9,42.7
+Brisbane,Australia,Oceania,89713,1209,47.0,79.44,103.8,83.5,59.6
+"Philadelphia, PA",United States,Americas,52107,1596,43.6,79.19,115.61,91.9,66.5
+"Los Angeles, CA",United States,Americas,52107,2398,43.6,79.19,126.12,98.2,72.7
+"Minneapolis, MN",United States,Americas,52107,1515,43.6,79.08,114.68,91.4,66.0
+Turku,Finland,Europe,69377,761,51.3,79.06,96.82,77.6,55.6
+Dublin,Ireland,Europe,106734,2009,48.0,79.05,81.82,69.9,46.8
+Stockholm,Sweden,Europe,66010,1416,52.2,78.92,95.42,76.4,54.7
+"Birmingham, AL",United States,Americas,52107,908,43.6,78.82,84.93,73.5,48.6
+Seoul,South Korea,Asia,37187,1091,49.5,78.66,74.5,64.9,42.5
+Eindhoven,Netherlands,Europe,74713,1215,49.5,78.24,86.92,72.4,49.8
+Odense,Denmark,Europe,92715,913,55.9,78.23,94.79,74.5,54.4
+"Miami, FL",United States,Americas,52107,2092,43.6,78.0,93.71,78.8,53.7
+Groningen,Netherlands,Europe,74713,900,49.5,77.94,78.31,67.2,44.8
+"Sacramento, CA",United States,Americas,52107,1628,43.6,77.88,101.43,83.4,58.2
+Nijmegen,Netherlands,Europe,74713,1008,49.5,77.8,86.52,72.1,49.5
+Munich,Germany,Europe,77916,1524,47.5,77.52,95.16,78.1,54.6
+Galway,Ireland,Europe,106734,1282,48.0,77.44,71.94,64.0,41.0
+"St. John's, Newfoundland and Labrador",Canada,Americas,83902,695,53.5,77.4,62.75,56.2,35.7
+Innsbruck,Austria,Europe,74713,971,55.0,77.32,68.01,58.8,38.7
+Perth,Australia,Oceania,89713,1065,47.0,77.29,110.04,87.2,63.3
+"Charleston, SC",United States,Americas,52107,1565,43.6,77.26,121.26,95.3,69.8
+"Asheville, NC",United States,Americas,52107,1461,43.6,77.25,94.16,79.1,54.0
+Lyon,France,Europe,58703,1013,55.4,77.21,82.65,67.4,47.3
+Leiden,Netherlands,Europe,74713,1201,49.5,77.2,77.18,66.5,44.1
+Helsinki,Finland,Europe,69377,1234,51.3,77.17,83.51,69.6,47.8
+"Chicago, IL",United States,Americas,52107,1843,43.6,77.06,135.26,103.7,78.0
+"Fort Lauderdale, FL",United States,Americas,52107,1821,43.6,76.86,101.32,83.4,58.2
+"Portland, OR",United States,Americas,52107,1704,43.6,76.83,108.09,87.4,62.1
+Melbourne,Australia,Oceania,89713,1245,47.0,76.76,102.16,82.5,58.7
+Osaka,Japan,Asia,57206,938,55.9,76.71,81.58,66.6,46.7
+Wellington,New Zealand,Oceania,74813,1463,39.0,76.66,85.49,75.7,48.9
+Victoria,Canada,Americas,83902,1446,53.5,76.65,89.12,72.1,51.1
+Vancouver,Canada,Americas,83902,1818,53.5,76.61,87.68,71.2,50.2
+"Atlanta, GA",United States,Americas,52107,1564,43.6,76.6,130.67,101.0,75.3
+Adelaide,Australia,Oceania,89713,1056,47.0,76.59,104.24,83.7,59.9
+Lund,Sweden,Europe,66010,915,52.2,76.58,104.91,82.1,60.3
+Toulouse,France,Europe,58703,797,55.4,76.57,90.06,71.9,51.6
+Guelph,Canada,Americas,83902,1228,53.5,76.36,79.64,66.4,45.5
+Rotterdam,Netherlands,Europe,74713,1344,49.5,76.24,91.36,75.0,52.4
+"Saint Paul, MN",United States,Americas,52107,1416,43.6,76.17,106.63,86.5,61.3
+Cork,Ireland,Europe,106734,1373,48.0,76.15,84.45,71.5,48.3
+Guildford,United Kingdom,Europe,52107,1582,45.0,76.02,78.75,69.2,45.0
+"Plano, TX",United States,Americas,52107,1557,43.6,75.94,105.41,85.8,60.6
+Canberra,Australia,Oceania,89713,1368,47.0,75.94,105.11,84.3,60.4
+"Tampa, FL",United States,Americas,52107,1493,43.6,75.83,98.28,81.5,56.4
+Gold Coast,Australia,Oceania,89713,1286,47.0,75.8,101.22,81.9,58.1
+Oxford,United Kingdom,Europe,52107,1583,45.0,75.68,104.03,84.4,59.8
+Nagoya,Japan,Asia,57206,1855,55.9,75.62,57.39,52.1,32.5
+Lincoln,United Kingdom,Europe,52107,716,45.0,75.6,88.99,75.4,51.0
+York,United Kingdom,Europe,52107,1097,45.0,75.52,73.46,66.1,41.9
+"San Diego, CA",United States,Americas,52107,2214,43.6,75.47,127.94,99.3,73.7
+"Cleveland, OH",United States,Americas,52107,1136,43.6,75.41,125.32,97.8,72.2
+"Omaha, NE",United States,Americas,52107,973,43.6,75.31,106.03,86.2,60.9
+Leuven,Belgium,Europe,69377,921,52.9,75.27,83.59,69.0,47.8
+Reading,United Kingdom,Europe,52107,1343,45.0,75.27,100.89,82.5,57.9
+Hamilton,New Zealand,Oceania,74813,999,39.0,75.24,123.18,98.3,70.9
+"Denver, CO",United States,Americas,52107,1783,43.6,75.16,129.98,100.5,74.9
+Uppsala,Sweden,Europe,66010,895,52.2,75.08,83.94,69.5,48.0
+Newcastle,Australia,Oceania,89713,1212,47.0,74.99,118.92,92.6,68.5
+Halifax,Canada,Americas,83902,1096,53.5,74.91,87.92,71.4,50.4
+Milan,Italy,Europe,44828,1436,47.2,74.8,53.96,53.5,30.5
+Sliema,Malta,Other,65775,1016,45.0,74.78,47.96,50.8,27.0
+Graz,Austria,Europe,74713,726,55.0,74.59,79.03,65.4,45.2
+Brussels,Belgium,Europe,69377,1074,52.9,74.39,87.04,71.1,49.8
+"Buffalo, NY",United States,Americas,52107,952,43.6,74.29,124.36,97.2,71.6
+Toronto,Canada,Americas,83902,1667,53.5,74.29,101.29,79.4,58.2
+"Colorado Springs, CO",United States,Americas,52107,1337,43.6,74.26,137.64,105.1,79.4
+"Fremont, CA",United States,Americas,52107,2413,43.6,74.12,157.35,117.0,90.9
+Limerick,Ireland,Europe,106734,1296,48.0,74.11,96.5,78.7,55.4
+"Salem, OR",United States,Americas,52107,1153,43.6,73.98,89.2,76.1,51.1
+The Hague (Den Haag),Netherlands,Europe,74713,1329,49.5,73.94,88.51,73.3,50.7
+Hobart,Australia,Oceania,89713,1206,47.0,73.93,101.63,82.2,58.4
+Christchurch,New Zealand,Oceania,74813,1049,39.0,73.85,90.2,78.5,51.7
+Malmo,Sweden,Europe,66010,859,52.2,73.75,84.86,70.0,48.6
+"San Jose, CA",United States,Americas,52107,2650,43.6,73.71,157.39,117.0,90.9
+"Nashville, TN",United States,Americas,52107,1723,43.6,73.62,111.46,89.4,64.1
+Enschede,Netherlands,Europe,74713,923,49.5,73.61,93.83,76.5,53.8
+"Olympia, WA",United States,Americas,52107,1221,43.6,73.58,108.83,87.9,62.6
+Maastricht,Netherlands,Europe,74713,1180,49.5,73.56,86.5,72.1,49.5
+"Baltimore, MD",United States,Americas,52107,1342,43.6,73.56,136.13,104.2,78.5
+"New Orleans, LA",United States,Americas,52107,1399,43.6,73.55,92.88,78.3,53.3
+Linz,Austria,Europe,74713,853,55.0,73.55,78.35,65.0,44.8
+Calgary,Canada,Americas,83902,1097,53.5,73.4,114.16,87.1,65.7
+Edinburgh,United Kingdom,Europe,52107,1204,45.0,73.15,88.03,74.8,50.4
+Ottawa,Canada,Americas,83902,1283,53.5,73.15,94.3,75.2,54.1
+Milton Keynes,United Kingdom,Europe,52107,1212,45.0,73.14,73.92,66.4,42.2
+Manchester,United Kingdom,Europe,52107,1125,45.0,73.14,91.33,76.8,52.4
+Mississauga,Canada,Americas,83902,1538,53.5,73.12,99.7,78.4,57.2
+Cambridge,United Kingdom,Europe,52107,1486,45.0,73.05,92.85,77.7,53.2
+Gothenburg,Sweden,Europe,66010,1009,52.2,72.97,101.17,79.8,58.1
+Edmonton,Canada,Americas,83902,935,53.5,72.86,109.54,84.3,63.0
+Parma,Italy,Europe,44828,699,47.2,72.81,60.66,57.5,34.5
+Genoa,Italy,Europe,44828,635,47.2,72.79,51.57,52.1,29.1
+Frankfurt,Germany,Europe,77916,1261,47.5,72.78,106.89,85.1,61.4
+"Fort Collins, CO",United States,Americas,52107,1387,43.6,72.75,100.34,82.8,57.6
+Grenoble,France,Europe,58703,689,55.4,72.67,81.58,66.8,46.7
+Bergamo,Italy,Europe,44828,749,47.2,72.64,63.32,59.1,36.0
+Derby,United Kingdom,Europe,52107,698,45.0,72.57,119.81,93.9,69.0
+"Iowa City, IA",United States,Americas,52107,1020,43.6,72.54,85.03,73.6,48.7
+Delft,Netherlands,Europe,74713,980,49.5,72.54,91.65,75.2,52.5
+"Syracuse, NY",United States,Americas,52107,1008,43.6,72.53,78.44,69.6,44.8
+"Everett, WA",United States,Americas,52107,1454,43.6,72.38,101.79,83.6,58.5
+Saskatoon,Canada,Americas,83902,901,53.5,72.27,88.18,71.5,50.5
+Heidelberg,Germany,Europe,77916,1060,47.5,72.14,102.21,82.3,58.7
+Markham,Canada,Americas,83902,1473,53.5,72.1,108.69,83.8,62.5
+Hamburg,Germany,Europe,77916,1183,47.5,72.01,101.1,81.7,58.1
+Red Deer,Canada,Americas,83902,723,53.5,71.73,123.94,93.0,71.4
+Surrey,Canada,Americas,83902,1315,53.5,71.67,98.13,77.5,56.3
+Trieste,Italy,Europe,44828,582,47.2,71.65,63.01,58.9,35.8
+"Rochester, NY",United States,Americas,52107,938,43.6,71.57,100.12,82.6,57.5
+"Milwaukee, WI",United States,Americas,52107,1280,43.6,71.56,109.19,88.1,62.8
+"Albany, NY",United States,Americas,52107,1117,43.6,71.49,129.75,100.4,74.8
+Liverpool,United Kingdom,Europe,52107,843,45.0,71.39,90.09,76.1,51.6
+Nottingham,United Kingdom,Europe,52107,861,45.0,71.34,91.62,77.0,52.5
+Antwerp,Belgium,Europe,69377,831,52.9,71.33,90.25,73.0,51.7
+Bristol,United Kingdom,Europe,52107,1302,45.0,71.32,84.81,72.9,48.5
+Tampere,Finland,Europe,69377,817,51.3,71.19,91.43,74.3,52.4
+Portsmouth,United Kingdom,Europe,52107,983,45.0,71.16,85.02,73.0,48.7
+Bonn,Germany,Europe,77916,997,47.5,71.08,95.72,78.4,54.9
+Marseille,France,Europe,58703,768,55.4,71.05,95.31,75.0,54.7
+Rome,Italy,Europe,44828,1198,47.2,71.0,51.33,51.9,29.0
+Tauranga,New Zealand,Oceania,74813,838,39.0,70.87,84.35,75.0,48.3
+Florence,Italy,Europe,44828,890,47.2,70.81,53.36,53.1,30.2
+Plymouth,United Kingdom,Europe,52107,792,45.0,70.7,84.01,72.4,48.1
+"Detroit, MI",United States,Americas,52107,1180,43.6,70.68,110.05,88.6,63.3
+"Reno, NV",United States,Americas,52107,1512,43.6,70.67,96.91,80.7,55.6
+Oulu,Finland,Europe,69377,665,51.3,70.62,101.06,80.1,58.0
+Montreal,Canada,Americas,83902,1005,53.5,70.6,89.93,72.6,51.5
+Salzburg,Austria,Europe,74713,1035,55.0,70.53,77.81,64.7,44.5
+London,Canada,Americas,83902,1177,53.5,70.49,100.36,78.8,57.6
+Brampton,Canada,Americas,83902,1261,53.5,70.44,103.49,80.7,59.4
+"Fort Worth, TX",United States,Americas,52107,1301,43.6,70.42,112.62,90.1,64.8
+"Durham, NC",United States,Americas,52107,1355,43.6,70.37,104.76,85.4,60.2
+Winnipeg,Canada,Americas,83902,881,53.5,70.33,101.59,79.6,58.3
+"Ann Arbor, MI",United States,Americas,52107,1545,43.6,70.28,159.99,118.6,92.4
+"Greensboro, NC",United States,Americas,52107,1212,43.6,70.27,92.73,78.2,53.2
+San Juan,Puerto Rico,Other,52107,1040,45.0,70.14,66.7,62.0,38.0
+"Charlotte, NC",United States,Americas,52107,1656,43.6,70.06,144.88,109.5,83.6
+Norwich,United Kingdom,Europe,52107,865,45.0,70.06,79.66,69.8,45.5
+Gent,Belgium,Europe,69377,879,52.9,69.97,77.4,65.3,44.2
+Exeter,United Kingdom,Europe,52107,1029,45.0,69.9,93.92,78.4,53.9
+Dortmund,Germany,Europe,77916,681,47.5,69.89,105.62,84.4,60.7
+"Long Beach, CA",United States,Americas,52107,1840,43.6,69.87,110.03,88.6,63.3
+Bologna,Italy,Europe,44828,853,47.2,69.79,58.89,56.5,33.4
+North Vancouver,Canada,Americas,83902,1785,53.5,69.79,110.05,84.6,63.3
+Kelowna,Canada,Americas,83902,1342,53.5,69.73,77.45,65.1,44.3
+"Columbus, OH",United States,Americas,52107,1192,43.6,69.7,151.29,113.3,87.3
+Brescia,Italy,Europe,44828,598,47.2,69.64,69.1,62.6,39.4
+"Eugene, OR",United States,Americas,52107,1214,43.6,69.64,88.21,75.5,50.5
+Macao,Macao,Other,52107,1322,45.0,69.61,67.31,62.4,38.3
+Cologne,Germany,Europe,77916,999,47.5,69.59,89.1,74.5,51.1
+"Jacksonville, FL",United States,Americas,52107,1139,43.6,69.51,144.3,109.1,83.3
+Regina,Canada,Americas,83902,859,53.5,69.44,104.02,81.0,59.8
+"Phoenix, AZ",United States,Americas,52107,1412,43.6,69.37,135.94,104.1,78.4
+"Des Moines, IA",United States,Americas,52107,967,43.6,69.33,108.35,87.6,62.3
+Quebec City,Canada,Americas,83902,691,53.5,68.99,87.22,70.9,50.0
+"Fresno, CA",United States,Americas,52107,1095,43.6,68.97,116.4,92.4,67.0
+Berlin,Germany,Europe,77916,1243,47.5,68.94,105.86,84.5,60.8
+Cardiff,United Kingdom,Europe,52107,954,45.0,68.91,106.17,85.7,61.0
+Windsor,Canada,Americas,83902,1002,53.5,68.88,58.02,53.4,32.9
+Glasgow,United Kingdom,Europe,52107,928,45.0,68.76,96.42,79.9,55.3
+Kitchener,Canada,Americas,83902,1154,53.5,68.7,73.85,62.9,42.2
+"Vancouver, WA",United States,Americas,52107,1400,43.6,68.57,126.09,98.2,72.6
+Kingston,Canada,Americas,83902,1063,53.5,68.57,75.42,63.9,43.1
+Augsburg,Germany,Europe,77916,834,47.5,68.51,79.93,69.0,45.7
+Stuttgart,Germany,Europe,77916,1136,47.5,68.38,109.02,86.4,62.7
+Vienna,Austria,Europe,74713,1116,55.0,68.36,79.56,65.7,45.5
+Mannheim,Germany,Europe,77916,733,47.5,68.35,95.07,78.0,54.5
+"Las Vegas, NV",United States,Americas,52107,1230,43.6,68.34,124.83,97.5,71.9
+"Boise, ID",United States,Americas,52107,1394,43.6,68.29,82.63,72.1,47.3
+Dusseldorf,Germany,Europe,77916,1045,47.5,68.28,109.99,87.0,63.2
+"Raleigh, NC",United States,Americas,52107,1333,43.6,68.2,144.12,109.0,83.2
+Pisa,Italy,Europe,44828,720,47.2,68.17,52.1,52.4,29.5
+"Spokane, WA",United States,Americas,52107,1130,43.6,68.11,112.36,90.0,64.6
+"Orlando, FL",United States,Americas,52107,1477,43.6,68.1,123.32,96.6,71.0
+"Dayton, OH",United States,Americas,52107,899,43.6,68.03,79.21,70.1,45.3
+Verona,Italy,Europe,44828,687,47.2,67.98,63.11,59.0,35.9
+"Dallas, TX",United States,Americas,52107,1615,43.6,67.85,170.66,125.0,98.6
+"Richmond, VA",United States,Americas,52107,1208,43.6,67.75,130.94,101.1,75.5
+"Louisville, KY",United States,Americas,52107,1038,43.6,67.71,109.65,88.4,63.0
+Southampton,United Kingdom,Europe,52107,1043,45.0,67.59,98.44,81.1,56.5
+Leeds,United Kingdom,Europe,52107,981,45.0,67.57,88.49,75.1,50.7
+Treviso,Italy,Europe,44828,677,47.2,67.54,61.95,58.3,35.2
+"Madison, WI",United States,Americas,52107,1248,43.6,67.32,132.13,101.8,76.2
+Birmingham,United Kingdom,Europe,52107,1066,45.0,67.25,81.78,71.1,46.8
+"Indianapolis, IN",United States,Americas,52107,1163,43.6,67.14,121.53,95.5,70.0
+Hanover,Germany,Europe,77916,870,47.5,67.04,95.57,78.3,54.8
+Nuremberg,Germany,Europe,77916,818,47.5,66.97,115.65,90.4,66.5
+Hamilton,Canada,Americas,83902,1159,53.5,66.95,86.35,70.4,49.4
+Coventry,United Kingdom,Europe,52107,931,45.0,66.94,108.7,87.2,62.5
+Newcastle upon Tyne,United Kingdom,Europe,52107,828,45.0,66.86,97.66,80.6,56.0
+"Saint Louis, MO",United States,Americas,52107,1049,43.6,66.83,123.2,96.5,71.0
+Ulm,Germany,Europe,77916,925,47.5,66.67,107.39,85.4,61.7
+Stoke-on-Trent,United Kingdom,Europe,52107,564,45.0,66.58,97.94,80.8,56.2
+"Austin, TX",United States,Americas,52107,1857,43.6,66.5,158.21,117.5,91.4
+Dundee,United Kingdom,Europe,52107,749,45.0,66.46,82.43,71.5,47.2
+Saarbrucken,Germany,Europe,77916,722,47.5,66.3,85.4,72.2,48.9
+"Kansas City, MO",United States,Americas,52107,1079,43.6,66.07,127.2,98.9,73.3
+Cagliari,Italy,Europe,44828,596,47.2,66.06,57.68,55.7,32.7
+Karlsruhe,Germany,Europe,77916,895,47.5,65.88,103.03,82.8,59.2
+Sheffield,United Kingdom,Europe,52107,867,45.0,65.88,89.07,75.4,51.0
+Taipei,Taiwan,Asia,37105,793,45.0,65.8,59.33,57.6,33.7
+Belfast,United Kingdom,Europe,52107,841,45.0,65.74,91.62,77.0,52.5
+"Chattanooga, TN",United States,Americas,52107,1199,43.6,65.69,91.7,77.6,52.6
+Darmstadt,Germany,Europe,77916,893,47.5,65.48,108.54,86.1,62.4
+Limassol,Cyprus,Other,85387,961,45.0,65.26,55.84,55.5,31.6
+Turin,Italy,Europe,44828,709,47.2,65.19,67.23,61.5,38.3
+St.Catharines,Canada,Americas,83902,1052,53.5,65.18,71.18,61.3,40.6
+Best,Netherlands,Europe,74713,905,49.5,65.13,97.21,78.5,55.8
+"Toledo, OH",United States,Americas,52107,738,43.6,64.99,90.45,76.8,51.8
+"Salt Lake City, UT",United States,Americas,52107,1363,43.6,64.95,140.61,106.9,81.1
+"Oklahoma City, OK",United States,Americas,52107,1025,43.6,64.94,127.95,99.3,73.7
+Padova,Italy,Europe,44828,709,47.2,64.93,66.62,61.1,37.9
+Leicester,United Kingdom,Europe,52107,803,45.0,64.91,92.59,77.6,53.1
+Freiburg im Breisgau,Germany,Europe,77916,1143,47.5,64.65,94.46,77.7,54.2
+Erlangen,Germany,Europe,77916,800,47.5,64.54,131.75,100.0,75.9
+Nicosia,Cyprus,Other,85387,623,45.0,64.53,60.28,58.2,34.2
+"Cincinnati, OH",United States,Americas,52107,1280,43.6,64.39,125.17,97.7,72.1
+"Tucson, AZ",United States,Americas,52107,891,43.6,64.34,83.69,72.8,47.9
+Dubai,United Arab Emirates,Middle East,52107,1419,45.0,64.32,101.11,82.7,58.1
+"Houston, TX",United States,Americas,52107,1397,43.6,63.94,172.98,126.3,100.0
+Bilbao,Spain,Europe,58703,866,45.0,63.81,65.48,61.3,37.3
+Bournemouth,United Kingdom,Europe,52107,1055,45.0,63.73,76.52,67.9,43.7
+"Mesa, AZ",United States,Americas,52107,1062,43.6,63.66,103.42,84.6,59.4
+Essen,Germany,Europe,77916,676,47.5,63.61,81.89,70.1,46.8
+"Albuquerque, NM",United States,Americas,52107,1092,43.6,63.44,122.44,96.0,70.5
+Aberdeen,United Kingdom,Europe,52107,743,45.0,63.4,102.02,83.2,58.6
+"Lexington, KY",United States,Americas,52107,942,43.6,62.92,102.4,84.0,58.8
+Doha,Qatar,Middle East,42422,1584,45.0,62.9,89.93,76.0,51.5
+Leipzig,Germany,Europe,77916,750,47.5,62.83,79.8,68.9,45.6
+"San Antonio, TX",United States,Americas,52107,1232,43.6,62.59,137.67,105.2,79.4
+Bari,Italy,Europe,44828,584,47.2,62.59,64.98,60.1,37.0
+Dresden,Germany,Europe,77916,683,47.5,62.46,109.14,86.5,62.7
+"Tulsa, OK",United States,Americas,52107,931,43.6,62.35,132.05,101.8,76.1
+Naples,Italy,Europe,44828,688,47.2,62.35,56.2,54.8,31.9
+"Memphis, TN",United States,Americas,52107,1124,43.6,62.29,109.95,88.5,63.2
+Bremen,Germany,Europe,77916,767,47.5,62.24,77.06,67.2,44.0
+"Akron, OH",United States,Americas,52107,737,43.6,62.2,102.89,84.3,59.1
+Kingston upon Hull,United Kingdom,Europe,52107,702,45.0,62.07,86.57,73.9,49.6
+Aachen,Germany,Europe,77916,700,47.5,61.81,116.48,90.9,67.0
+Kaohsiung,Taiwan,Asia,37105,512,45.0,61.4,55.49,55.3,31.4
+Regensburg,Germany,Europe,77916,887,47.5,61.36,103.28,83.0,59.3
+Barcelona,Spain,Europe,58703,985,45.0,61.15,70.83,64.5,40.4
+"Little Rock, AR",United States,Americas,52107,824,43.6,59.26,131.07,101.2,75.5
+Port of Spain,Trinidad And Tobago,Other,52107,619,45.0,59.2,40.68,46.4,22.8
+Madrid,Spain,Europe,58703,1029,45.0,59.01,74.83,66.9,42.7
+Palma de Mallorca,Spain,Europe,58703,931,45.0,58.97,63.24,59.9,36.0
+Athens,Greece,Europe,42267,577,44.0,58.97,40.03,46.4,22.4
+"Wichita, KS",United States,Americas,52107,781,43.6,58.92,119.24,94.1,68.6
+Patras,Greece,Europe,42267,328,44.0,58.74,37.37,44.8,20.9
+Thessaloniki,Greece,Europe,42267,438,44.0,58.4,37.91,45.1,21.2
+Palermo,Italy,Europe,44828,474,47.2,57.97,58.89,56.5,33.4
+Abu Dhabi,United Arab Emirates,Middle East,52107,2956,45.0,57.89,75.22,67.1,43.0
+Larnaca,Cyprus,Other,85387,636,45.0,57.38,55.32,55.2,31.3
+Catania,Italy,Europe,44828,564,47.2,57.35,54.62,53.9,30.9
+Male,Maldives,Other,22632,962,45.0,57.26,28.52,39.1,15.7
+Ljubljana,Slovenia,Europe,53366,757,45.0,57.18,60.19,58.1,34.2
+Heraklion,Greece,Europe,42267,491,44.0,57.08,36.04,44.0,20.1
+"El Paso, TX",United States,Americas,52107,746,43.6,55.92,118.77,93.8,68.4
+Havana,Cuba,Other,19320,554,45.0,55.91,1.62,23.0,0.0
+Tallinn,Estonia,Europe,64040,620,20.0,55.75,64.89,70.9,36.9
+Zaragoza (Saragossa),Spain,Europe,58703,581,45.0,54.8,69.32,63.6,39.5
+Panama City,Panama,Other,45264,845,45.0,54.54,32.31,41.4,17.9
+Manama,Bahrain,Other,68301,907,45.0,54.3,62.59,59.6,35.6
+Shanghai,China,Asia,38443,1432,45.0,53.9,53.0,53.8,30.0
+Riyadh,Saudi Arabia,Middle East,44758,525,45.0,53.85,92.73,77.6,53.2
+Tartu,Estonia,Europe,64040,488,20.0,53.79,60.53,68.3,34.4
+Vigo,Spain,Europe,58703,561,45.0,53.43,74.98,67.0,42.8
+Seville (Sevilla),Spain,Europe,58703,675,45.0,53.28,71.04,64.6,40.5
+Valencia,Spain,Europe,58703,723,45.0,52.97,70.04,64.0,39.9
+Paphos,Cyprus,Other,85387,526,45.0,52.86,61.21,58.7,34.8
+Makati,Philippines,Other,21000,921,45.0,52.72,20.57,34.3,11.1
+Ajman,United Arab Emirates,Middle East,52107,899,45.0,52.58,48.26,51.0,27.2
+Jeddah (Jiddah),Saudi Arabia,Middle East,44758,357,45.0,52.57,76.08,67.6,43.5
+Malaga,Spain,Europe,58703,840,45.0,52.52,65.84,61.5,37.5
+Amman,Jordan,Other,28807,342,45.0,52.18,29.51,39.7,16.3
+Granada,Spain,Europe,58703,516,45.0,52.03,81.61,71.0,46.7
+Montevideo,Uruguay,Other,54986,487,45.0,52.0,30.79,40.5,17.0
+Prague,Czech Republic,Europe,60286,838,23.0,51.78,71.96,74.0,41.0
+Murcia,Spain,Europe,58703,517,45.0,51.73,78.54,69.1,44.9
+Lisbon,Portugal,Europe,58703,1011,53.0,51.7,48.26,47.8,27.2
+Maribor,Slovenia,Europe,53366,461,45.0,51.64,68.02,62.8,38.7
+Split,Croatia,Europe,48030,506,45.0,51.59,42.48,47.5,23.8
+Kingston,Jamaica,Other,89053,593,45.0,51.57,26.11,37.7,14.3
+Riga,Latvia,Europe,48030,475,31.2,51.54,52.82,59.2,29.9
+Alicante,Spain,Europe,58703,639,45.0,51.47,79.93,70.0,45.7
+Muscat,Oman,Other,358924,597,45.0,51.24,86.53,73.9,49.6
+Shenzhen,China,Asia,38443,904,45.0,51.08,68.96,63.4,39.3
+Santa Cruz de Tenerife,Spain,Europe,58703,632,45.0,50.92,63.82,60.3,36.3
+Dakar,Senegal,Other,21158,751,45.0,50.87,23.14,35.9,12.6
+Cascais,Portugal,Europe,58703,1237,53.0,50.86,41.22,43.5,23.1
+Las Palmas de Gran Canaria,Spain,Europe,58703,754,45.0,50.52,56.7,56.0,32.1
+Addis Ababa,Ethiopia,Other,33120,562,45.0,50.49,9.83,27.9,4.8
+Bangkok,Thailand,Other,38995,852,45.0,50.36,29.77,39.9,16.4
+Rijeka,Croatia,Europe,48030,395,45.0,50.14,43.59,48.2,24.5
+Phnom Penh,Cambodia,Other,9292,607,45.0,50.1,14.8,30.9,7.7
+Zagreb,Croatia,Europe,48030,551,45.0,49.88,55.08,55.0,31.2
+Beijing,China,Asia,38443,1261,45.0,49.53,53.08,53.8,30.0
+Bratislava,Slovakia,Europe,53366,742,25.0,49.44,62.63,67.6,35.6
+Porto,Portugal,Europe,58703,761,53.0,49.37,44.87,45.7,25.2
+Brno,Czech Republic,Europe,60286,676,23.0,49.29,65.14,69.9,37.1
+Hangzhou,China,Asia,38443,658,45.0,49.21,64.95,61.0,37.0
+Paramaribo,Suriname,Other,17192,325,45.0,49.19,16.38,31.8,8.6
+Funchal,Portugal,Europe,58703,664,53.0,49.16,46.47,46.7,26.2
+Sharjah,United Arab Emirates,Middle East,52107,1739,45.0,49.03,56.71,56.0,32.1
+Ad Dammam,Saudi Arabia,Middle East,44758,408,45.0,48.45,93.58,78.1,53.7
+Olomouc,Czech Republic,Europe,60286,482,23.0,48.21,61.3,67.6,34.8
+Kosice,Slovakia,Europe,53366,560,25.0,48.19,51.15,60.7,28.9
+Kuwait City,Kuwait,Other,30684,1005,45.0,48.0,68.84,63.3,39.2
+San Jose,Costa Rica,Other,63020,563,45.0,47.65,42.86,47.7,24.1
+Coimbra,Portugal,Europe,58703,499,53.0,47.35,53.04,50.6,30.0
+Abidjan,Ivory Coast,Other,52107,635,45.0,47.06,6.27,25.8,2.7
+Braga,Portugal,Europe,58703,615,53.0,46.99,46.28,46.6,26.1
+Vilnius,Lithuania,Europe,66709,619,32.0,46.94,62.14,64.5,35.3
+Ostrava,Czech Republic,Europe,60286,437,23.0,46.47,65.17,69.9,37.1
+Aveiro,Portugal,Europe,58703,579,53.0,46.46,43.88,45.1,24.7
+Budapest,Hungary,Europe,47886,516,15.0,46.13,52.66,65.6,29.8
+Suzhou,China,Asia,38443,541,45.0,45.94,58.75,57.2,33.3
+Harare,Zimbabwe,Other,28520,308,45.0,45.69,17.59,32.6,9.3
+Leiria,Portugal,Europe,58703,498,53.0,45.67,49.68,48.6,28.0
+Santiago,Chile,Other,34142,493,45.0,45.64,32.08,41.2,17.8
+San Salvador,El Salvador,Other,24840,451,45.0,45.32,21.83,35.1,11.8
+Caracas,Venezuela,Other,52107,389,45.0,45.31,15.87,31.5,8.3
+Johannesburg,South Africa,Africa,42947,512,45.0,44.87,72.15,65.3,41.2
+Kaunas,Lithuania,Europe,66709,426,32.0,44.74,64.93,66.2,36.9
+Santo Domingo,Dominican Republic,Other,28721,344,45.0,44.66,22.21,35.3,12.0
+Guatemala City,Guatemala,Other,27447,518,45.0,44.59,24.37,36.6,13.3
+Phuket,Thailand,Other,38995,528,45.0,44.34,27.28,38.4,15.0
+Warsaw,Poland,Europe,60256,662,32.0,43.94,66.04,66.8,37.6
+Chengdu,China,Asia,38443,414,45.0,43.81,56.04,55.6,31.8
+Osijek,Croatia,Europe,48030,310,45.0,43.61,56.42,55.9,32.0
+Quezon City,Philippines,Other,21000,354,45.0,43.26,19.69,33.8,10.5
+Gdynia,Poland,Europe,60256,494,32.0,42.92,50.58,57.5,28.6
+Bali,Indonesia,Other,10554,525,45.0,42.87,14.1,30.5,7.3
+Pretoria,South Africa,Africa,42947,458,45.0,42.76,87.26,74.4,50.0
+Gaborone,Botswana,Other,52107,380,45.0,42.7,51.4,52.8,29.0
+Nanjing,China,Asia,38443,512,45.0,42.29,72.85,65.7,41.6
+Sofia,Bulgaria,Europe,52106,469,45.0,42.24,55.31,55.2,31.3
+Chiang Mai,Thailand,Other,38995,409,45.0,42.22,29.88,39.9,16.5
+Moscow,Russia,Other,52107,903,45.0,42.2,49.56,51.7,28.0
+Pattaya,Thailand,Other,38995,450,45.0,42.13,23.25,36.0,12.6
+Gdansk,Poland,Europe,60256,578,32.0,41.32,64.36,65.8,36.6
+Krakow (Cracow),Poland,Europe,60256,572,32.0,41.3,67.1,67.5,38.2
+Wroclaw,Poland,Europe,60256,564,32.0,41.12,59.89,63.1,34.0
+Guangzhou,China,Asia,38443,690,45.0,41.11,70.13,64.1,40.0
+Cape Town,South Africa,Africa,42947,729,45.0,40.98,75.83,67.5,43.3
+Jakarta,Indonesia,Other,10554,530,45.0,40.86,25.32,37.2,13.8
+Pecs,Hungary,Europe,47886,391,15.0,40.83,47.23,62.3,26.6
+Manila,Philippines,Other,21000,811,45.0,40.77,22.24,35.3,12.0
+Poznan,Poland,Europe,60256,480,32.0,40.72,58.32,62.2,33.1
+Quito,Ecuador,Other,27600,406,45.0,40.48,29.69,39.8,16.4
+Durban,South Africa,Africa,42947,473,45.0,40.33,73.88,66.3,42.2
+Katowice,Poland,Europe,60256,455,32.0,40.26,64.03,65.6,36.4
+Cluj-Napoca,Romania,Europe,58203,475,45.0,40.16,53.12,53.9,30.1
+Bucharest,Romania,Europe,58203,478,45.0,40.1,53.15,53.9,30.1
+Szeged,Hungary,Europe,47886,329,15.0,40.08,49.5,63.7,27.9
+Belgrade,Serbia,Other,59340,447,45.0,40.05,36.05,43.6,20.1
+Debrecen,Hungary,Europe,47886,348,15.0,40.03,49.86,63.9,28.2
+Petaling Jaya,Malaysia,Other,18860,447,45.0,39.98,60.88,58.5,34.6
+Marrakech,Morocco,Other,23060,395,45.0,39.94,29.96,40.0,16.5
+Podgorica,Montenegro,Other,39443,372,45.0,39.34,35.98,43.6,20.1
+Szczecin,Poland,Europe,60256,495,32.0,39.31,51.05,57.8,28.8
+Kota Kinabalu,Malaysia,Other,18860,318,45.0,39.25,39.43,45.7,22.1
+Kuala Lumpur,Malaysia,Other,18860,455,45.0,39.25,64.04,60.4,36.4
+Varna,Bulgaria,Europe,52106,268,45.0,39.14,46.29,49.8,26.1
+Suva,Fiji,Other,52107,605,45.0,39.04,44.68,48.8,25.1
+Cebu,Philippines,Other,21000,423,45.0,39.04,17.64,32.6,9.3
+Ho Chi Minh City,Vietnam,Other,52107,575,45.0,39.01,30.87,40.5,17.1
+Cancun,Mexico,Americas,33899,494,35.0,38.85,38.24,48.9,21.4
+Accra,Ghana,Other,13875,645,45.0,38.74,21.12,34.7,11.4
+Tirana,Albania,Other,39010,365,45.0,38.68,31.15,40.7,17.2
+Guayaquil,Ecuador,Other,27600,375,45.0,38.57,31.41,40.8,17.4
+Monterrey,Mexico,Americas,33899,494,35.0,38.46,42.98,51.8,24.1
+Plovdiv,Bulgaria,Europe,52106,304,45.0,38.42,45.56,49.3,25.6
+Sarajevo,Bosnia And Herzegovina,Other,52107,298,45.0,38.42,43.73,48.2,24.6
+Lublin,Poland,Europe,60256,447,32.0,38.04,60.2,63.3,34.2
+Erbil (Irbil),Iraq,Other,16560,404,45.0,38.03,39.88,45.9,22.3
+Santa Cruz,Bolivia,Other,17281,374,45.0,38.01,32.91,41.7,18.3
+Isfahan (Esfahan),Iran,Other,52107,555,45.0,37.98,22.77,35.7,12.3
+Lodz,Poland,Europe,60256,449,32.0,37.94,57.76,61.9,32.8
+Saint Petersburg,Russia,Other,52107,552,45.0,37.81,40.77,46.5,22.8
+Banja Luka,Bosnia And Herzegovina,Other,52107,255,45.0,37.61,38.29,45.0,21.4
+Penang,Malaysia,Other,18860,300,45.0,37.61,65.85,61.5,37.5
+La Paz,Bolivia,Other,17281,350,45.0,37.53,34.57,42.7,19.2
+Sao Paulo,Brazil,Americas,30983,467,45.0,37.51,29.23,39.5,16.1
+Novi Sad,Serbia,Other,59340,332,45.0,37.44,42.73,47.6,24.0
+Mexico City,Mexico,Americas,33899,674,35.0,37.41,36.74,48.0,20.5
+Lagos,Nigeria,Other,9200,1993,45.0,37.33,8.3,27.0,3.9
+Constanta,Romania,Europe,58203,362,45.0,37.26,45.4,49.2,25.5
+Iasi,Romania,Europe,58203,355,45.0,37.13,44.06,48.4,24.8
+Hanoi,Vietnam,Other,52107,393,45.0,36.85,30.67,40.4,17.0
+Tangier,Morocco,Other,23060,330,45.0,36.85,33.16,41.9,18.4
+Brasilia,Brazil,Americas,30983,357,45.0,36.84,43.54,48.1,24.5
+Burgas,Bulgaria,Europe,52106,260,45.0,36.82,42.39,47.4,23.8
+Baguio,Philippines,Other,21000,304,45.0,36.74,18.71,33.2,10.0
+Rio de Janeiro,Brazil,Americas,30983,371,45.0,36.67,18.93,33.4,10.1
+Brasov,Romania,Europe,58203,392,45.0,36.63,44.65,48.8,25.1
+Casablanca,Morocco,Other,23060,434,45.0,36.59,34.07,42.4,18.9
+Damascus,Syria,Other,52107,289,45.0,36.38,5.03,25.0,2.0
+Sibiu,Romania,Europe,58203,308,45.0,36.19,48.27,51.0,27.2
+Timisoara,Romania,Europe,58203,362,45.0,36.16,54.26,54.6,30.7
+Kampala,Uganda,Other,9108,370,45.0,35.98,9.83,27.9,4.8
+Nairobi,Kenya,Other,24567,437,45.0,35.88,29.23,39.5,16.1
+Merida,Mexico,Americas,33899,373,35.0,35.7,33.5,46.1,18.6
+Rabat,Morocco,Other,23060,463,45.0,35.67,34.67,42.8,19.3
+"Qingdao, Shandong",China,Asia,38443,419,45.0,35.48,74.04,66.4,42.3
+Queretaro,Mexico,Americas,33899,364,35.0,35.4,51.02,56.6,28.8
+Bandung,Indonesia,Other,10554,232,45.0,35.39,21.84,35.1,11.8
+Oradea,Romania,Europe,58203,255,45.0,35.35,49.45,51.7,27.9
+Buenos Aires,Argentina,Americas,40480,346,45.0,35.25,26.89,38.1,14.7
+Dhaka,Bangladesh,Other,9033,200,45.0,35.12,23.81,36.3,12.9
+Skopje,North Macedonia,Other,52107,260,45.0,34.9,37.02,44.2,20.7
+Ulaanbaatar,Mongolia,Other,27376,358,45.0,34.86,25.02,37.0,13.7
+Craiova,Romania,Europe,58203,277,45.0,34.85,52.91,53.7,29.9
+Agadir,Morocco,Other,23060,230,45.0,34.81,31.37,40.8,17.4
+Baghdad,Iraq,Other,16560,397,45.0,34.81,39.03,45.4,21.8
+Surabaya,Indonesia,Other,10554,332,45.0,34.65,23.63,36.2,12.8
+Lima,Peru,Other,28452,468,45.0,34.6,28.89,39.3,15.9
+Arad,Romania,Europe,58203,202,45.0,34.49,50.96,52.6,28.8
+Florianopolis,Brazil,Americas,30983,312,45.0,34.39,29.31,39.6,16.2
+Cuenca,Ecuador,Other,27600,388,45.0,34.21,30.84,40.5,17.1
+Kiev (Kyiv),Ukraine,Other,37484,581,45.0,34.11,48.16,50.9,27.2
+Gurgaon,India,Asia,22457,316,45.0,34.1,74.9,66.9,42.8
+Guadalajara,Mexico,Americas,33899,540,35.0,34.05,35.99,47.6,20.1
+Kazan,Russia,Other,52107,415,45.0,34.02,33.45,42.1,18.6
+Yerevan,Armenia,Other,33120,383,45.0,34.01,29.73,39.8,16.4
+Dar es Salaam,Tanzania,Other,52107,534,45.0,33.97,13.54,30.1,7.0
+Nizhny Novgorod,Russia,Other,52107,319,45.0,33.89,34.95,43.0,19.5
+Colombo,Sri Lanka,Other,18384,446,45.0,33.62,18.58,33.1,9.9
+Lusaka,Zambia,Other,20682,328,45.0,33.57,37.48,44.5,20.9
+Nis,Serbia,Other,59340,234,45.0,33.4,40.38,46.2,22.6
+Yekaterinburg,Russia,Other,52107,351,45.0,33.23,57.77,56.7,32.8
+Minsk,Belarus,Other,45264,389,45.0,32.79,31.15,40.7,17.2
+Krasnodar,Russia,Other,52107,315,45.0,32.65,36.59,44.0,20.4
+Mashhad,Iran,Other,52107,602,45.0,32.54,22.68,35.6,12.3
+Belo Horizonte,Brazil,Americas,30983,254,45.0,32.5,20.99,34.6,11.3
+Cairo,Egypt,Other,12880,239,45.0,32.39,24.38,36.6,13.3
+Porto Alegre,Brazil,Americas,30983,286,45.0,32.33,31.24,40.7,17.3
+Kigali,Rwanda,Other,21063,516,45.0,32.27,26.37,37.8,14.4
+Novosibirsk,Russia,Other,52107,321,45.0,32.26,38.35,45.0,21.4
+Rostov-na-donu,Russia,Other,52107,280,45.0,32.1,36.94,44.2,20.6
+Odessa (Odesa),Ukraine,Other,37484,346,45.0,31.94,32.72,41.6,18.1
+Chisinau,Moldova,Other,36568,335,45.0,31.82,34.38,42.6,19.1
+Curitiba,Brazil,Americas,30983,245,45.0,31.81,32.28,41.4,17.9
+Baku,Azerbaijan,Other,30083,305,45.0,31.6,28.03,38.8,15.4
+Tehran,Iran,Other,52107,734,45.0,31.47,14.55,30.7,7.5
+Istanbul,Turkey,Other,39023,321,40.8,31.14,28.73,40.9,15.8
+Tbilisi,Georgia,Other,55072,330,45.0,30.95,29.47,39.7,16.3
+Yogyakarta,Indonesia,Other,10554,315,45.0,30.8,12.16,29.3,6.2
+Asuncion,Paraguay,Other,24216,332,45.0,30.62,27.38,38.4,15.0
+Kharkiv,Ukraine,Other,37484,374,45.0,30.46,33.98,42.4,18.9
+Astana (Nur-Sultan),Kazakhstan,Other,28243,324,45.0,30.3,41.0,46.6,23.0
+Chandigarh,India,Asia,22457,202,45.0,30.27,46.47,49.9,26.2
+Almaty,Kazakhstan,Other,28243,385,45.0,30.22,33.55,42.1,18.6
+Tunis,Tunisia,Other,19485,208,45.0,29.94,24.2,36.5,13.2
+Kathmandu,Nepal,Other,10035,154,45.0,29.87,23.16,35.9,12.6
+Algiers,Algeria,Other,15126,215,45.0,29.84,21.78,35.1,11.8
+Lviv,Ukraine,Other,37484,339,45.0,29.67,38.3,45.0,21.4
+Tashkent,Uzbekistan,Other,14835,343,45.0,29.36,22.63,35.6,12.3
+Mumbai,India,Asia,22457,635,45.0,29.33,48.03,50.8,27.1
+Dnipro,Ukraine,Other,37484,338,45.0,29.26,32.74,41.6,18.2
+Noida,India,Asia,22457,205,45.0,29.21,62.57,59.5,35.6
+Medellin,Colombia,Americas,36742,305,45.0,28.81,32.78,41.7,18.2
+Alexandria,Egypt,Other,12880,214,45.0,28.43,20.28,34.2,10.9
+Barranquilla,Colombia,Americas,36742,250,45.0,28.42,27.03,38.2,14.8
+Navi Mumbai,India,Asia,22457,351,45.0,28.38,78.67,69.2,45.0
+Izmir,Turkey,Other,39023,206,40.8,28.37,35.18,44.8,19.6
+Delhi,India,Asia,22457,272,45.0,28.23,60.44,58.3,34.3
+Bangalore,India,Asia,22457,277,45.0,28.2,102.64,83.6,59.0
+Bogota,Colombia,Americas,36742,374,45.0,27.94,26.1,37.7,14.3
+Goa,India,Asia,22457,273,45.0,27.72,36.29,43.8,20.2
+Pune,India,Asia,22457,229,45.0,27.57,53.68,54.2,30.4
+Ghaziabad,India,Asia,22457,169,45.0,27.55,54.56,54.7,30.9
+Thane,India,Asia,22457,266,45.0,27.53,66.14,61.7,37.7
+Ranchi,India,Asia,22457,135,45.0,27.33,38.61,45.2,21.6
+Ankara,Turkey,Other,39023,203,40.8,27.17,39.07,47.1,21.9
+Hyderabad,India,Asia,22457,208,45.0,26.61,51.21,52.7,28.9
+Faridabad,India,Asia,22457,174,45.0,26.56,51.07,52.6,28.9
+Bishkek,Kyrgyzstan,Other,12651,269,45.0,26.55,23.06,35.8,12.5
+Pristina,Kosovo (Disputed Territory),Other,52107,291,45.0,26.15,47.48,50.5,26.8
+Chennai,India,Asia,22457,218,45.0,26.08,46.31,49.8,26.1
+Ahmedabad,India,Asia,22457,191,45.0,26.01,39.11,45.5,21.9
+Kolkata,India,Asia,22457,179,45.0,25.99,44.66,48.8,25.1
+Cali,Colombia,Americas,36742,225,45.0,25.78,31.08,40.6,17.2
+Guwahati,India,Asia,22457,137,45.0,25.61,39.6,45.8,22.2
+Lucknow (Lakhnau),India,Asia,22457,161,45.0,25.42,48.19,50.9,27.2
+Madurai,India,Asia,22457,122,45.0,25.38,32.82,41.7,18.2
+Surat,India,Asia,22457,229,45.0,25.34,41.98,47.2,23.6
+Vadodara,India,Asia,22457,144,45.0,25.32,46.1,49.7,26.0
+Vijayawada,India,Asia,22457,171,45.0,24.95,37.17,44.3,20.7
+Ludhiana,India,Asia,22457,119,45.0,24.92,35.75,43.4,19.9
+"Cyberjaya, Selangor",Malaysia,Other,18860,223,45.0,24.85,128.47,99.1,74.0
+Raipur,India,Asia,22457,143,45.0,24.81,63.17,59.9,35.9
+Dehradun,India,Asia,22457,162,45.0,24.75,40.36,46.2,22.6
+Nashik,India,Asia,22457,153,45.0,24.6,35.31,43.2,19.7
+Indore,India,Asia,22457,148,45.0,24.5,40.0,46.0,22.4
+Rajkot,India,Asia,22457,144,45.0,24.47,44.8,48.9,25.2
+Nagpur,India,Asia,22457,143,45.0,24.39,42.48,47.5,23.8
+Ernakulam,India,Asia,22457,187,45.0,24.04,46.52,49.9,26.2
+Visakhapatnam,India,Asia,22457,174,45.0,24.03,42.7,47.6,24.0
+Jaipur,India,Asia,22457,162,45.0,23.97,51.5,52.9,29.1
+Patna,India,Asia,22457,111,45.0,23.97,36.78,44.1,20.5
+Mangalore,India,Asia,22457,147,45.0,23.73,47.91,50.7,27.0
+Bucaramanga,Colombia,Americas,36742,191,45.0,23.7,30.42,40.3,16.8
+Coimbatore,India,Asia,22457,156,45.0,23.45,40.73,46.4,22.8
+Bhopal,India,Asia,22457,115,45.0,23.35,45.78,49.5,25.8
+Bhubaneswar,India,Asia,22457,144,45.0,23.34,54.15,54.5,30.7
+Mysore,India,Asia,22457,158,45.0,23.16,46.46,49.9,26.2
+Kochi,India,Asia,22457,203,45.0,22.9,59.47,57.7,33.8
+Agra,India,Asia,22457,96,45.0,22.81,27.91,38.7,15.3
+Jammu,India,Asia,22457,95,45.0,22.04,58.35,57.0,33.1
+Thiruvananthapuram,India,Asia,22457,143,45.0,21.75,73.73,66.2,42.1
+Kozhikode (Calicut),India,Asia,22457,145,45.0,21.57,50.02,52.0,28.2
+Lahore,Pakistan,Other,13569,130,45.0,21.53,24.42,36.7,13.3
+Islamabad,Pakistan,Other,13569,186,45.0,21.5,29.52,39.7,16.3
+Kabul,Afghanistan,Other,7774,102,45.0,21.35,22.79,35.7,12.4
+Thrissur,India,Asia,22457,125,45.0,21.28,54.43,54.7,30.8
+Kanpur,India,Asia,22457,116,45.0,20.79,38.83,45.3,21.7
+Karachi,Pakistan,Other,13569,156,45.0,20.75,29.16,39.5,16.1
+Rawalpindi,Pakistan,Other,13569,154,45.0,20.52,22.91,35.7,12.4
+Multan,Pakistan,Other,13569,95,45.0,18.68,25.09,37.1,13.7
+Peshawar,Pakistan,Other,13569,76,45.0,18.55,26.0,37.6,14.2
