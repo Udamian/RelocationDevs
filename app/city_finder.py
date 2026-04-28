@@ -621,6 +621,20 @@ def step_resultado(df_full):
 
     prefs   = st.session_state.get("finder", {})
     profile = st.session_state.get("profile", {})
+
+
+    prefs   = st.session_state.get("finder", {})
+    profile = st.session_state.get("profile", {})
+
+    # ── DEBUG temporal ────────────────────────────────────────
+    with st.expander("🔍 Debug info (eliminar tras resolver)"):
+        st.write("**Profile:**", profile)
+        st.write("**Prefs:**", prefs)
+        st.write("**DF shape:**", df_full.shape)
+        st.write("**DF columns:**", df_full.columns.tolist())
+        st.write("**DF sample:**", df_full.head(2).to_dict())
+    # ── Fin debug ─────────────────────────────────────────────
+
     df_res  = compute_compatibility(df_full, prefs, profile)
 
     _section_title("Tus ciudades ideales")
