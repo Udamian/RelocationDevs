@@ -8,6 +8,7 @@ import pandas as pd
 from pathlib import Path
 import sys
 from pathlib import Path
+import base64
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from app.styles import inject_styles, render_sidebar_brand, render_footer, page_header
@@ -57,7 +58,7 @@ def load_countries():
 
 
 def get_logo_html():
-    import base64
+    
     try:
         raw_svg = (ASSETS / "logo.svg").read_bytes()
     except FileNotFoundError:
