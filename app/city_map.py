@@ -40,15 +40,29 @@ CITY_COORDS_OVERRIDE = {
     ("Shanghai", "China"):           (31.2304, 121.4737),
     ("Beijing", "China"):            (39.9042, 116.4074),
     ("Guangzhou", "China"):          (23.1291, 113.2644),
+    ("Houston", "United States"):    (29.7604, -95.3698),
+    ("Dallas", "United States"):     (32.7767, -96.7970),
+    ("Austin", "United States"):     (30.2672, -97.7431),
+    ("San Jose", "United States"):   (37.3382, -121.8863),
+    ("San Francisco", "United States"): (37.7749, -122.4194),
+    ("Seattle", "United States"):    (47.6062, -122.3321),
+    ("New York", "United States"):   (40.7128, -74.0060),
+    ("Ann Arbor", "United States"):  (42.2808, -83.7430),
+    ("Fremont", "United States"):    (37.5485, -121.9886),
+    ("Jersey City", "United States"):(40.7282, -74.0776),
+    ("Santa Clara", "United States"):(37.3541, -121.9552),
+    ("Columbus", "United States"):   (39.9612, -82.9988),
 }
 
-
 def get_coords(row):
-    city    = row.get("city_name", "")
-    country = row.get("country", "")
+    city    = str(row.get("city_name", ""))
+    country = str(row.get("country", ""))
+
+    # Limpiar nombre para buscar coincidencias ('Houston, TX' -> 'Houston')
+    clean_city = city.split(",")[0].strip()
 
     # 1. Override manual — máxima prioridad
-    override = CITY_COORDS_OVERRIDE.get((city, country))
+    override = CITY_COORDS_OVERRIDE.get((clean_city, country))
     if override:
         return override
 
@@ -192,11 +206,28 @@ def render():
     regiones = sorted(df["region"].dropna().unique())
     selected_regions = st.sidebar.multiselect("Región", regiones, default=regiones)
     min_score = st.sidebar.slider("Score mínimo", 0.0, 100.0, 0.0)
+    top_n_opciones = ["Todas", 5, 10, 15, 20, 30, 50]
+    top_n = st.sidebar.selectbox("Top ciudades por región", top_n_opciones, index=0)
 
     df_filtered = df[
         (df["region"].isin(selected_regions)) &
         (df["relocation_score"] >= min_score)
     ]
+    
+    if top_n != "Todas":
+        df_filtered = (
+            df_filtered.sort_values("relocation_score", ascending=False)
+            .groupby("region")
+            .head(top_n)
+        )
+        
+    # Investigando el comportamiento de EE.UU.: tiene 95 ciudades superpuestas. Limitamos los países más densos.
+    df_filtered = (
+        df_filtered.sort_values("relocation_score", ascending=False)
+        .groupby("country")
+        .head(7) # Máximo 7 ciudades por país para no sobrecargar de localizaciones aproximadas al centroide
+        .reset_index(drop=True)
+    )
 
     if df_filtered.empty:
         st.warning("No hay ciudades que coincidan con los filtros.")
@@ -217,10 +248,27 @@ def render():
 
     st.caption(f"Mostrando {len(df_filtered)} ciudades")
 
+    # Preparamos la tabla (top 50) para que el índice de selección coincida
+    df_table = df_filtered.sort_values("relocation_score", ascending=False).head(50).reset_index(drop=True)
+
+    # Estado inicial del mapa
+    map_location = [30, 10]
+    map_zoom = 2
+
+    # Escucha de clicks en la tabla para centrar el mapa
+    if "city_table_selection" in st.session_state:
+        selected_rows = st.session_state.city_table_selection.get("selection", {}).get("rows", [])
+        if selected_rows:
+            row_idx = selected_rows[0]
+            if row_idx < len(df_table):
+                selected_city = df_table.iloc[row_idx]
+                map_location = [selected_city["_lat"], selected_city["_lon"]]
+                map_zoom = 6
+
     # ── Mapa Folium ───────────────────────────────────────────
     m = folium.Map(
-        location=[30, 10],
-        zoom_start=2,
+        location=map_location,
+        zoom_start=map_zoom,
         tiles="CartoDB dark_matter",
         prefer_canvas=True,
     )
@@ -271,18 +319,49 @@ def render():
     m.get_root().html.add_child(folium.Element(legend_html))
 
     # Renderizar en Streamlit
-    st_folium(m, width="100%", height=750, returned_objects=[])
+    st_folium(m, use_container_width=True, height=850, returned_objects=[])
 
     # ── Ranking debajo del mapa ───────────────────────────────
     st.divider()
     st.subheader("Top ciudades por Relocation Score")
     cols = ["city_name", "country", "region", "relocation_score",
             "average_salary", "average_rent", "net_salary", "purchasing_power"]
-    cols_exist = [c for c in cols if c in df_filtered.columns]
+    cols_exist = [c for c in cols if c in df_table.columns]
+    
+    column_config = {
+        "city_name": st.column_config.TextColumn("Ciudad"),
+        "country": st.column_config.TextColumn("País"),
+        "region": st.column_config.TextColumn("Región"),
+        "relocation_score": st.column_config.ProgressColumn(
+            "Score",
+            format="%.1f",
+            min_value=0,
+            max_value=100,
+        ),
+        "average_salary": st.column_config.NumberColumn(
+            "Sal. Bruto",
+            format="€%d",
+        ),
+        "average_rent": st.column_config.NumberColumn(
+            "Alquiler",
+            format="€%d",
+        ),
+        "net_salary": st.column_config.NumberColumn(
+            "Sal. Neto",
+            format="€%d",
+        ),
+        "purchasing_power": st.column_config.NumberColumn(
+            "Poder Adq.",
+            format="%.1f",
+        )
+    }
+
     st.dataframe(
-        df_filtered[cols_exist]
-        .sort_values("relocation_score", ascending=False)
-        .head(20)
-        .reset_index(drop=True),
+        df_table[cols_exist],
         use_container_width=True,
+        hide_index=True,
+        column_config=column_config,
+        selection_mode="single-row",
+        on_select="rerun",
+        key="city_table_selection"
     )
