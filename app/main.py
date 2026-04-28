@@ -6,6 +6,10 @@ Sistema de diseño Midnight Silver · by a Cambeiro
 import streamlit as st
 import pandas as pd
 from pathlib import Path
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from app.styles import inject_styles, render_sidebar_brand, render_footer, page_header
 
 PROCESSED = Path(__file__).parent.parent / "data" / "processed"
