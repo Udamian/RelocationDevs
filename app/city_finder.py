@@ -511,7 +511,7 @@ def step_estilo():
 def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.DataFrame:
     df = df.copy()
 
-    # Salario estimado con fallback robusto
+    # ── Salario estimado con fallback robusto ─────────────────
     estimated = profile.get("estimated_salary")
     if not estimated or estimated == 0:
         estimated = float(df["average_salary"].median())
@@ -538,8 +538,20 @@ def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.Da
             return any(i.lower() in lang.lower() for i in prefs["idiomas"])
         df = df[df["country"].apply(idioma_ok)]
 
-    # Filtro de ahorro mínimo más permisivo
-    df = df[df["user_annual_savings"] > -10000]
+    # ── Filtro dinámico de ahorro según peso ──────────────────
+    # Si el usuario prioriza mucho el ahorro, excluir ciudades
+    # donde el ahorro sería claramente insuficiente
+    pri         = prefs.get("prioridades", {})
+    w_ahorro_raw = pri.get("ahorro", 20)
+
+    if w_ahorro_raw > 60:
+        min_savings = 5000    # mínimo €5k/año si ahorro es prioridad máxima
+    elif w_ahorro_raw > 30:
+        min_savings = 0       # al menos no perder dinero
+    else:
+        min_savings = -10000  # permisivo si ahorro no es prioridad
+
+    df = df[df["user_annual_savings"] > min_savings]
 
     if df.empty:
         return df
@@ -551,13 +563,23 @@ def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.Da
             return pd.Series([0.5] * len(s), index=s.index)
         return (s - mn) / (mx - mn)
 
-    df["_n_ahorro"]  = norm(df["user_annual_savings"])
+    # Normalización estándar para todos los features
     df["_n_wlb"]     = norm(df["quality_of_life_index"])
     df["_n_tech"]    = norm(df["job_market_score"])
     df["_n_cultura"] = norm(df["cultural_affinity"])
     df["_n_estab"]   = norm(df["stability_score"])
 
-    # Estilo de vida
+    # Para ahorro aplicamos potencia < 1 para amplificar
+    # las diferencias en valores altos (Suiza vs Hungría)
+    # Sin esto la normalización lineal comprime demasiado
+    n_ahorro_lineal  = norm(df["user_annual_savings"])
+    df["_n_ahorro"]  = n_ahorro_lineal.pow(0.6)  # potencia < 1 amplifica diferencias altas
+
+    # Bonus absoluto para ciudades con ahorro > €15k
+    # Este bonus no se normaliza — es un premio directo
+    df["_ahorro_bonus"] = (df["user_annual_savings"] > 15000).astype(float) * 0.2
+
+    # ── Estilo de vida ────────────────────────────────────────
     w_social  = prefs.get("w_vida_social", 7)
     w_rest    = prefs.get("w_restaurantes", 3)
     w_seg     = prefs.get("w_seguridad", 10)
@@ -568,17 +590,14 @@ def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.Da
         df["_n_ahorro"] * w_rest              / w_e_total
     )
 
-    # Pesos del radar
-    pri = prefs.get("prioridades", {
-        "ahorro": 20, "wlb": 20, "tech": 20, "cultura": 20, "estabilidad": 20
-    })
-
+    # ── Pesos del radar ───────────────────────────────────────
     w_ahorro = pri.get("ahorro", 20) / 100
     w_wlb    = pri.get("wlb",    20) / 100
     w_tech   = pri.get("tech",   20) / 100
     w_cult   = pri.get("cultura", 20) / 100
     w_estab  = pri.get("estabilidad", 20) / 100
 
+    # Remoto reduce peso de tech
     if prefs.get("remoto"):
         extra    = w_tech * 0.5
         w_wlb   += extra * 0.5
@@ -587,17 +606,18 @@ def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.Da
 
     w_estilo_extra = (w_social + w_rest + w_seg) / 30 * 0.15
 
+    # ── Score final ───────────────────────────────────────────
     df["compatibility_score"] = (
-        df["_n_ahorro"]  * w_ahorro  * 100 +
-        df["_n_wlb"]     * w_wlb     * 100 +
-        df["_n_tech"]    * w_tech    * 100 +
-        df["_n_cultura"] * w_cult    * 100 +
-        df["_n_estab"]   * w_estab   * 100 +
-        df["_n_estilo"]  * w_estilo_extra * 100
+        df["_n_ahorro"]     * w_ahorro  * 100 +
+        df["_n_wlb"]        * w_wlb     * 100 +
+        df["_n_tech"]       * w_tech    * 100 +
+        df["_n_cultura"]    * w_cult    * 100 +
+        df["_n_estab"]      * w_estab   * 100 +
+        df["_n_estilo"]     * w_estilo_extra * 100 +
+        df["_ahorro_bonus"] * w_ahorro  * 30   # bonus proporcional al peso de ahorro
     ) / (1 + w_estilo_extra)
 
     return df.sort_values("compatibility_score", ascending=False)
-
 
 def _explain_city(row, prefs):
     pros, cons = [], []
