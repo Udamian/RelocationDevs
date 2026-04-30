@@ -8,7 +8,7 @@
 
 *by a Cambeiro*
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://relocationdevs.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://relocationdevs-is3ttupaahfptsolfpjpvq.streamlit.app)
 [![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-orange?logo=scikit-learn)](https://scikit-learn.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.25-red?logo=streamlit)](https://streamlit.io/)
@@ -30,7 +30,7 @@ La app combina fuentes de datos públicas, indicadores derivados y un modelo de 
 
 ## Demo
 
-🌍 **[Abrir la app en Streamlit Cloud](https://relocationdevs.streamlit.app)**
+🌍 **[Abrir la app en Streamlit Cloud](https://relocationdevs-is3ttupaahfptsolfpjpvq.streamlit.app)**
 
 ---
 
