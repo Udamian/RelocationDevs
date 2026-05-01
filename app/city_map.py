@@ -33,6 +33,9 @@ COUNTRY_COORDS = {
 CITY_COORDS_OVERRIDE = {
     ("Valencia", "Spain"):           (39.4699, -0.3763),
     ("Vigo", "Spain"):               (42.2406, -8.7207),
+    ("Seville (Sevilla)", "Spain"):  (37.3891, -5.9845),
+    ("Zaragoza (Saragossa)", "Spain"): (41.6488, -0.8891),
+    ("Malaga", "Spain"):             (36.7213, -4.4214),
     ("Honolulu", "United States"):   (21.3069, -157.8583),
     ("Guadalajara", "Mexico"):       (20.6597, -103.3496),
     ("Monterrey", "Mexico"):         (25.6866, -100.3161),

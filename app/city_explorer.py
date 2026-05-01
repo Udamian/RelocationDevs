@@ -1,4 +1,4 @@
-﻿"""
+"""
 city_explorer.py
 Módulo: explorador de ciudades con ranking visual y tabla filtrable.
 """
@@ -76,7 +76,7 @@ def render():
     # ── Métricas resumen ──────────────────────────────────────
     st.divider()
     c1, c2, c3 = st.columns(3)
-    c1.metric("Mejor ciudad", top.iloc[-1]["city_name"] if len(top) > 0 else "—")
+    c1.metric("Mejor ciudad", top.iloc[0]["city_name"] if len(top) > 0 else "—")
     c2.metric("Score máximo", f"{df_filtered['relocation_score'].max():.1f}" if len(df_filtered) > 0 else "—")
     c3.metric("Salario medio top 10",
               f"€{df_filtered.nlargest(10, 'relocation_score')['average_salary'].mean():,.0f}"

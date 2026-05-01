@@ -1,4 +1,4 @@
-﻿"""
+"""
 salary_est.py
 Usa el perfil guardado en session_state.
 Permite ajustar la tasa impositiva manualmente.
@@ -15,7 +15,7 @@ PROCESSED = Path(__file__).parent.parent / "data" / "processed"
 
 
 def render():
-  page_header("Salary Estimator", "Estimación salarial basada en tu perfil")
+    page_header("Salary Estimator", "Estimación salarial basada en tu perfil")
 
     p = st.session_state.get("profile", {})
 
