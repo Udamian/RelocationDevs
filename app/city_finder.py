@@ -511,13 +511,22 @@ def step_estilo():
 def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.DataFrame:
     df = df.copy()
 
-    # ── Salario estimado con fallback robusto ─────────────────
-    estimated = profile.get("estimated_salary")
-    if not estimated or estimated == 0:
-        estimated = float(df["average_salary"].median())
-    estimated = float(estimated)
+    # ── Salario predictivo personalizado (ML Model) ───────────
+    try:
+        from src.model import load_model
+        pipeline = load_model()
+        pred_df = pd.DataFrame({
+            "city_name": df["country"], # El modelo fue entrenado con países en esta feature
+            "role": profile.get("role", "Data Scientist"),
+            "specialization": profile.get("specialization", "AI/ML"),
+            "years_experience": profile.get("years_experience", 4),
+            "education_level": profile.get("education_level", "Bachelor")
+        })
+        df["user_local_gross"] = pipeline.predict(pred_df)
+    except Exception:
+        df["user_local_gross"] = df["average_salary"]
 
-    df["user_net_salary"]     = estimated * (1 - df["tax_rate"] / 100)
+    df["user_net_salary"]     = df["user_local_gross"] * (1 - df["tax_rate"] / 100)
     df["user_annual_savings"] = df["user_net_salary"] - df["average_rent"] * 12
     df["cultural_affinity"]   = df["country"].apply(cultural_affinity)
     df["stability_score"]     = df["country"].map(STABILITY_SCORES).fillna(50)
@@ -573,7 +582,8 @@ def compute_compatibility(df: pd.DataFrame, prefs: dict, profile: dict) -> pd.Da
     # las diferencias en valores altos (Suiza vs Hungría)
     # Sin esto la normalización lineal comprime demasiado
     n_ahorro_lineal  = norm(df["user_annual_savings"])
-    df["_n_ahorro"]  = n_ahorro_lineal.pow(0.6)  # potencia < 1 amplifica diferencias altas
+    # Una potencia > 1 (convexa) es la que matemáticamente amplifica diferencias en la zona alta
+    df["_n_ahorro"]  = n_ahorro_lineal.pow(2.0)
 
     # Bonus absoluto para ciudades con ahorro > €15k
     # Este bonus no se normaliza — es un premio directo

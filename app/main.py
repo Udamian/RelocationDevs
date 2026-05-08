@@ -218,7 +218,7 @@ def render_sidebar_profile():
 
     page = st.sidebar.radio(
         "Navegación",
-        ["Buscador de ciudad ideal", "Explorador", "Comparador", "Mapa", "Estimador Salarial", "Informe PDF"],
+        ["Buscador de ciudad ideal", "Explorador", "Comparador", "Mapa", "Informe PDF"],
         label_visibility="collapsed",
         key="nav_page",
     )
@@ -260,8 +260,6 @@ else:
         from app.city_map import render; render()
     elif page == "Buscador de ciudad ideal":
         from app.city_finder import render; render()
-    elif page == "Estimador Salarial":
-        from app.salary_est import render; render()
     elif page == "Informe PDF":
         from app.pdf_generator import render
         render()
