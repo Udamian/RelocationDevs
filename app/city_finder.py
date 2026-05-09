@@ -849,6 +849,7 @@ def step_resultado(df_full):
         if st.button("Comparar top 3 en City Comparison →",
                      type="primary", use_container_width=True):
             st.session_state.comparison_preselect = top5["city_name"].tolist()[:3]
+            st.session_state.redirect_to = "Comparador"
             st.rerun()
 
 
