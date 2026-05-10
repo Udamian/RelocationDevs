@@ -17,7 +17,7 @@ ASSETS    = Path(__file__).parent.parent / "assets"
 
 st.set_page_config(
     page_title="RelocationDevs",
-    page_icon="🧭",
+    page_icon=str(ASSETS / "logo.svg") if (ASSETS / "logo.svg").exists() else "🧭",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
