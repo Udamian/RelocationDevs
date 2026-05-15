@@ -223,7 +223,7 @@ El sistema de diseño **Midnight Silver** está implementado en `app/styles.py`:
 
 ## Autor
 
-**a Cambeiro** — Junior Developer · Big Data & Data Analysis
+**Damian Cambeiro** — Junior Developer · Big Data & Data Analysis
 
 [![GitHub](https://img.shields.io/badge/GitHub-Udamian-black?logo=github)](https://github.com/Udamian/RelocationDevs)
 
